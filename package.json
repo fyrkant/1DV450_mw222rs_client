@@ -1,0 +1,25 @@
+{
+  "name": "1dv450-client",
+  "version": "0.0.1",
+  "description": "client application for course 1dv450",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mw222rs/1DV450_mw222rs_client.git"
+  },
+  "author": "mw222rs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mw222rs/1DV450_mw222rs_client/issues"
+  },
+  "homepage": "https://github.com/mw222rs/1DV450_mw222rs_client#readme",
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-config-google": "^0.4.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
