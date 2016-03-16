@@ -4,7 +4,8 @@
   "description": "client application for course 1dv450",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --progress --colors",
+    "start": "webpack-dev-server --content-base app --hot --inline --progress --colors -d"
   },
   "repository": {
     "type": "git",
