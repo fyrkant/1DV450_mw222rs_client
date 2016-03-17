@@ -18,18 +18,20 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-
   resolve: {
     extensions: ['', '.ts', '.js']
   },
-
   module: {
     loaders: [
       { test: /\.ts$/, loader: 'ts-loader' },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+      }
     ],
     noParse: [ path.join(__dirname, 'node_modules', 'angular2', 'bundles') ]
   },
-
   devServer: {
     historyApiFallback: true
   }
