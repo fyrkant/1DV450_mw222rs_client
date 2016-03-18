@@ -4,7 +4,7 @@
   "description": "client application for course 1dv450",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8080 --content-base src",
+    "start": "webpack-dev-server --hot --inline --colors --progress --display-error-details --display-cached --port 8080 --content-base src",
     "build": "webpack",
     "postinstall": "typings install"
   },

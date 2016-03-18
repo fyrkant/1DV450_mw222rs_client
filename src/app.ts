@@ -6,7 +6,7 @@ import "../sass/base.scss";
 
 @Component({
     selector: "app",
-    template: `<div class="test-class">hej</div>`
+    templateUrl: "app.html"
 })
 class App {}
 
