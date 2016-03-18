@@ -5,9 +5,9 @@ import {Control} from "angular2/common";
 import "../sass/base.scss";
 
 @Component({
-    selector: 'app',
+    selector: "app",
     template: `<div class="test-class">hej</div>`
 })
-class App{}
+class App {}
 
 bootstrap(App);
