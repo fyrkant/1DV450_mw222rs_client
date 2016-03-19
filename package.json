@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline --colors --progress --display-error-details --display-cached --port 8080 --content-base src",
     "build": "webpack",
+    "lint": "tslint src/**/*.ts",
     "postinstall": "typings install"
   },
   "repository": {
