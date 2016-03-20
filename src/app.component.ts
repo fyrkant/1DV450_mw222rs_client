@@ -7,4 +7,8 @@ import "../sass/base.scss";
     selector: "app",
     templateUrl: "app.component.html"
 })
-export class AppComponent {}
+export class AppComponent {
+  clickHandler(event) {
+    console.log(event);
+  }
+}
