@@ -3,7 +3,7 @@ import { Router } from "angular2/router";
 
 @Component({
   selector: "dashboard",
-  templateUrl: "./dashboard.component.html"
+  templateUrl: "dashboard/dashboard.component.html"
 })
 
 export class DashboardComponent {}
