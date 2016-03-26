@@ -3,7 +3,7 @@ import { Router } from "angular2/router";
 
 @Component({
   selector: "about",
-  template: `<p>About page.</p>`
+  template: require("./about.component.html")
 })
 
 export class AboutComponent { }
