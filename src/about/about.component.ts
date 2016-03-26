@@ -3,7 +3,7 @@ import { Router } from "angular2/router";
 
 @Component({
   selector: "about",
-  templateUrl: "about/about.component.html"
+  template: `<p>About page.</p>`
 })
 
 export class AboutComponent { }

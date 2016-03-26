@@ -23,7 +23,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.ts$/, loader: 'ts-loader'},
+      { test: /\.css$/, loader: 'raw-loader' },
+      { test: /\.html$/, loader: 'raw-loader' },
       {
         test: /\.scss$/,
         exclude: /node_modules/,

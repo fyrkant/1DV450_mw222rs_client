@@ -9,7 +9,7 @@ import "../sass/base.scss";
 
 @Component({
     selector: "app",
-    templateUrl: "app.component.html",
+    template: require("./app.component.html"),
     directives: [ROUTER_DIRECTIVES],
     providers: [ROUTER_PROVIDERS]
 })
