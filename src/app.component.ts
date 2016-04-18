@@ -7,8 +7,12 @@ import { RouteConfig
        , ROUTER_DIRECTIVES
        , ROUTER_PROVIDERS } from "angular2/router";
 
-import { DashboardComponent } from "./dashboard/dashboard";
-import { AboutComponent } from "./about/about";
+import {
+  AboutComponent,
+  DashboardComponent,
+  LoginComponent,
+  PlaceMapComponent
+} from "./components";
 
 import "../sass/base.scss";
 
@@ -28,6 +32,16 @@ import "../sass/base.scss";
     path: "/about",
     name: "About",
     component: AboutComponent
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: LoginComponent
+  },
+  {
+    path: "/map",
+    name: "Map",
+    component: PlaceMapComponent
   }
  ])
 export class AppComponent {
