@@ -5,10 +5,16 @@ import { RouteConfig
        , LocationStrategy
        , HashLocationStrategy
        , ROUTER_PROVIDERS } from "angular2/router";
+
+import {
+  ANGULAR2_GOOGLE_MAPS_PROVIDERS
+} from 'angular2-google-maps/core';
+
 import { AppComponent } from "./app.component";
 
 bootstrap(AppComponent, [
   ROUTER_PROVIDERS,
+  ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy})
 ])
   .then(success => console.log("Bootstrap success!"))
