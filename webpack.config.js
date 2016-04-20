@@ -19,16 +19,16 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['', '.ts', '.js', '.eot', '.woff', '.woff2', '.ttf']
   },
   module: {
     loaders: [
       { test: /\.ts$/, loader: 'ts-loader'},
       { test: /\.css$/, loader: 'raw-loader' },
       { test: /\.html$/, loader: 'raw-loader' },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
         loaders: ["style", "css?sourceMap", "sass?sourceMap"]
       }
     ],

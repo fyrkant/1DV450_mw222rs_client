@@ -1,3 +1,9 @@
-.test-class {
-  background-color: pink;
+$md-font-url: "../node_modules/ng2-material/dist/";
+@import "../node_modules/ng2-material/dist/font";
+@import "../node_modules/ng2-material/source/all";
+
+.content {
+  width: 100%;
+  height: 100%;
 }
+

@@ -1,13 +1,17 @@
-<h1>PlacesApp</h1>
+<md-toolbar>
+  <div class="md-toolbar-tools my-tooly">
+    <h2>
+      <span>PlacesApp</span>
+    </h2>
+    <span flex></span>
+    <a md-button href="" [routerLink]="['Dashboard']">Dashboard</a>
+    <a md-button href="" [routerLink]="['About']">About</a>
+    <a md-button href="" [routerLink]="['Map']">Map</a>
+    <a md-button href="" [routerLink]="['Login']">Login</a>
+  </div>
+</md-toolbar>
+
 <div class="content">
-  <nav>
-    <a href="" [routerLink]="['Dashboard']">Dashboard</a>
-    -
-    <a href="" [routerLink]="['About']">About</a>
-    -
-    <a href="" [routerLink]="['Map']">Map</a>
-    -
-    <a href="" [routerLink]="['Login']">Login</a>
-  </nav>
   <router-outlet></router-outlet>
 </div>
+
