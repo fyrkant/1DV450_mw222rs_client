@@ -11,7 +11,6 @@ import {
 @Component({
   selector: "place-map",
   directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES],
-  styles: [require("./place-map.component.css")],
   template: require("./place-map.component.html")
 })
 

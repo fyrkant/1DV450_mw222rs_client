@@ -1,4 +1,6 @@
 .sebm-google-map-container {
-  height: 100%;
-  flex:1;
+  height: 100vh;
+}
+.sebm-google-map-container-inner {
+  margin-top: 100px;
 }
