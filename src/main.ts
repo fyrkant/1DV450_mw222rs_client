@@ -7,6 +7,7 @@ import { RouteConfig
        , ROUTER_PROVIDERS } from "angular2/router";
 
 import { MATERIAL_PROVIDERS } from "ng2-material/all";
+import { provideStore } from '@ngrx/store';
 
 import {
   ANGULAR2_GOOGLE_MAPS_PROVIDERS
@@ -14,11 +15,14 @@ import {
 
 import { AppComponent } from "./app.component";
 
+import {clock, people} from "./reducers/";
+
 bootstrap(AppComponent, [
   ROUTER_PROVIDERS,
   ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   MATERIAL_PROVIDERS,
-  provide(LocationStrategy, {useClass: HashLocationStrategy})
+  provide(LocationStrategy, {useClass: HashLocationStrategy}),
+  provideStore({ clock, people })
 ])
   .then(success => console.log("Bootstrap success!"))
   .catch(error => console.log(error));
