@@ -4,7 +4,7 @@ export const ADVANCE = 'ADVANCE';
 export const RECALL = 'RECALL';
 
 
-export const clock = (state = new Date(), {type, payload} = {type: ""})=> {
+export const clock = (state = new Date(), {type, payload} = {type: "", payload: null})=> {
     const date = new Date(state.getTime());
     switch (type) {
         case SECOND:
