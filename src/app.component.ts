@@ -8,6 +8,7 @@ import { RouteConfig
        , ROUTER_PROVIDERS } from "angular2/router";
 
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
+import {AuthHttp, tokenNotExpired} from 'angular2-jwt';
 
 import {
   AboutComponent,
@@ -47,8 +48,36 @@ import "../sass/base.scss";
   }
  ])
 export class AppComponent {
+  lock = new Auth0Lock('YOUR_CLIENT_ID', 'YOUR_NAMESPACE');
+
+  constructor() { }
   clickHandler(event) {
     console.log(event);
+  }
+  login() {
+    var hash = this.lock.parseHash();
+    if (hash) {
+      if (hash.error)
+        console.log('There was an error logging in', hash.error);
+      else
+        this.lock.getProfile(hash.id_token, function(err, profile) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          localStorage.setItem('profile', JSON.stringify(profile));
+          localStorage.setItem('id_token', hash.id_token);
+        });
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('profile');
+    localStorage.removeItem('id_token');
+  }
+
+  loggedIn() {
+    return tokenNotExpired();
   }
 
 }
