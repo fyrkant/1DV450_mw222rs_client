@@ -8,7 +8,9 @@ import { RouteConfig
        , ROUTER_PROVIDERS } from "angular2/router";
 
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
-import {AuthHttp, tokenNotExpired} from 'angular2-jwt';
+import {AuthHttp, tokenNotExpired} from "angular2-jwt";
+
+declare var Auth0Lock: any;
 
 import {
   AboutComponent,
@@ -48,7 +50,7 @@ import "../sass/base.scss";
   }
  ])
 export class AppComponent {
-  lock = new Auth0Lock('YOUR_CLIENT_ID', 'YOUR_NAMESPACE');
+  lock = new Auth0Lock('92e9wK3bYFJwWfGmaMgAGmKayl8EcSIG', 'fyrkant.eu.auth0.com');
 
   constructor() { }
   clickHandler(event) {
