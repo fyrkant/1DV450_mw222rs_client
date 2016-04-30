@@ -1,5 +1,6 @@
 import { bootstrap } from "angular2/platform/browser";
 import { provide } from "angular2/core";
+import { HTTP_PROVIDERS }    from 'angular2/http';
 import { RouteConfig
        , Location
        , LocationStrategy
@@ -20,6 +21,7 @@ import {clock, people} from "./reducers/";
 bootstrap(AppComponent, [
   ROUTER_PROVIDERS,
   ANGULAR2_GOOGLE_MAPS_PROVIDERS,
+  HTTP_PROVIDERS,
   MATERIAL_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
   provideStore({ clock, people })

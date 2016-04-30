@@ -1,4 +1,5 @@
 import { Component } from "angular2/core";
+import { Http } from "angular2/http";
 import { Router } from "angular2/router";
 import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
@@ -13,9 +14,15 @@ import "rxjs/add/observable/merge";
 
 export class LoginComponent {
   click$ = new Subject()
-    .map(val => val);
+    .map(val => val + "hello");
 
-  constructor () {
+  getData() {
+    this.http.get("http://lit-river-92285.herokuapp.com/api/places")
+      .map(val => console.log(val))
+      .subscribe(val => console.log(val));
+  }
+
+  constructor (private http: Http) {
     Observable.merge(this.click$).subscribe(x => console.log(x));
   }
 }
