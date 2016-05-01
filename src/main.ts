@@ -17,7 +17,8 @@ import {
 
 import { AppComponent } from "./app.component";
 
-import {clock, people} from "./reducers/";
+import {counter} from "./reducers/counter";
+import initialState from "./initial-state";
 
 bootstrap(AppComponent, [
   ROUTER_PROVIDERS,
@@ -26,7 +27,7 @@ bootstrap(AppComponent, [
   HTTP_PROVIDERS,
   MATERIAL_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
-  provideStore({ clock, people })
+  provideStore({ counter }, initialState)
 ])
   .then(success => console.log("Bootstrap success!"))
   .catch(error => console.log(error));
