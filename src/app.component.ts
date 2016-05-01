@@ -8,9 +8,7 @@ import { RouteConfig
        , ROUTER_PROVIDERS } from "angular2/router";
 
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
-import {AuthHttp, tokenNotExpired} from "angular2-jwt";
-
-declare var Auth0Lock: any;
+import {Auth} from "./services";
 
 import {
   AboutComponent,
@@ -24,6 +22,8 @@ import "../sass/base.scss";
 @Component({
     selector: "app",
     template: require("./app.component.html"),
+    styles: [require("normalize.css")],
+    providers: [ Auth ],
     directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES]
 })
 @RouteConfig([
@@ -50,36 +50,6 @@ import "../sass/base.scss";
   }
  ])
 export class AppComponent {
-  lock = new Auth0Lock('92e9wK3bYFJwWfGmaMgAGmKayl8EcSIG', 'fyrkant.eu.auth0.com');
-
-  constructor() { }
-  clickHandler(event) {
-    console.log(event);
-  }
-  login() {
-    var hash = this.lock.parseHash();
-    if (hash) {
-      if (hash.error)
-        console.log('There was an error logging in', hash.error);
-      else
-        this.lock.getProfile(hash.id_token, function(err, profile) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-          localStorage.setItem('profile', JSON.stringify(profile));
-          localStorage.setItem('id_token', hash.id_token);
-        });
-    }
-  }
-
-  logout() {
-    localStorage.removeItem('profile');
-    localStorage.removeItem('id_token');
-  }
-
-  loggedIn() {
-    return tokenNotExpired();
-  }
+  constructor(private auth: Auth) { }
 
 }

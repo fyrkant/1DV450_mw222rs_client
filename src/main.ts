@@ -9,6 +9,7 @@ import { RouteConfig
 
 import { MATERIAL_PROVIDERS } from "ng2-material/all";
 import { provideStore } from '@ngrx/store';
+import {AUTH_PROVIDERS} from 'angular2-jwt';
 
 import {
   ANGULAR2_GOOGLE_MAPS_PROVIDERS
@@ -20,6 +21,7 @@ import {clock, people} from "./reducers/";
 
 bootstrap(AppComponent, [
   ROUTER_PROVIDERS,
+  AUTH_PROVIDERS,
   ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   HTTP_PROVIDERS,
   MATERIAL_PROVIDERS,

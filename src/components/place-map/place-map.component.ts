@@ -1,5 +1,6 @@
 import { Component } from "angular2/core";
-import { Router } from "angular2/router";
+import { Router, CanActivate } from "angular2/router";
+import { tokenNotExpired } from "angular2-jwt";
 
 import {
   MapsAPILoader,
@@ -13,6 +14,8 @@ import {
   directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES],
   template: require("./place-map.component.html")
 })
+
+ @CanActivate(() => tokenNotExpired())
 
 export class PlaceMapComponent {
   // google maps zoom level
