@@ -22,19 +22,9 @@ export class Auth {
     return tokenNotExpired();
   }
 
-  public login() {
+  public login(hash) {
     // Show the Auth0 Lock widget
-    this.lock.show({}, (err, profile, token) => {
-      if (err) {
-        alert(err);
-        return;
-      }
-      // If authentication is successful, save the items
-      // in local storage
-      localStorage.setItem('profile', JSON.stringify(profile));
-      localStorage.setItem('id_token', token);
-      this.zoneImpl.run(() => this.user = profile);
-    });
+    console.log(hash);
   }
 
   public logout() {

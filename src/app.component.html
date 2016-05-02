@@ -7,8 +7,8 @@
     <a md-button href="" [routerLink]="['Dashboard']">Dashboard</a>
     <a md-button href="" [routerLink]="['About']">About</a>
     <a md-button href="" *ngIf="auth.authenticated()" [routerLink]="['Map']">Map</a>
-    <button md-button *ngIf="!auth.authenticated()" (click)="auth.login()">Login</button>
-    <button md-button *ngIf="auth.authenticated()" (click)="auth.logout()">Logout</button>
+    <a md-button *ngIf="!auth.authenticated()" [routerLink]="['Login']">Login</a>
+    <a md-button *ngIf="auth.authenticated()" (click)="auth.logout()">Logout</a>
   </div>
 </md-toolbar>
 

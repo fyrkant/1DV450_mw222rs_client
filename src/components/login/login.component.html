@@ -1,1 +1,5 @@
-<button #butty (click)="getData()">im loggin in here, so cool</button>
+<form [ngFormModel]="loginForm" (submit)="doLogin($event)">
+    <input ngControl="email" type="email" placeholder="Your email">
+    <input ngControl="password" type="password" placeholder="Your password">
+  <button type="submit">Log in</button>
+</form>
