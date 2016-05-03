@@ -9,7 +9,7 @@ import { RouteConfig
 
 import { MATERIAL_PROVIDERS } from "ng2-material/all";
 import { provideStore } from '@ngrx/store';
-import {AUTH_PROVIDERS} from 'angular2-jwt';
+import {AUTH_PROVIDERS, JwtHelper} from 'angular2-jwt';
 
 import {
   ANGULAR2_GOOGLE_MAPS_PROVIDERS
@@ -22,9 +22,10 @@ import initialState from "./initial-state";
 
 bootstrap(AppComponent, [
   ROUTER_PROVIDERS,
-  AUTH_PROVIDERS,
   ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   HTTP_PROVIDERS,
+  AUTH_PROVIDERS,
+  JwtHelper,
   MATERIAL_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
   provideStore({ counter }, initialState)

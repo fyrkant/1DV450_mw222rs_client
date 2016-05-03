@@ -13,6 +13,7 @@ import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import "rxjs/add/observable/merge";
+import {Auth} from "../../services";
 
 import C from "../../constants";
 
@@ -35,7 +36,10 @@ export class LoginComponent {
 
     this.http.post("http://lit-river-92285.herokuapp.com/api/auth", body, options)
       .map(val => val)
-      .subscribe((res: Response) => console.log(res.json()));
+      .subscribe((res: Response) => {
+        console.log(res.json());
+        this.auth.login(res.json());
+      });
   }
 
   // constructor (private http: Http) {
@@ -43,7 +47,7 @@ export class LoginComponent {
   // }
 
   loginForm;
-  constructor(fb: FormBuilder, private http: Http) {
+  constructor(fb: FormBuilder, private http: Http, private auth: Auth) {
     this.loginForm = fb.group({
       email: ["", Validators.required],
       password: ["", Validators.required]

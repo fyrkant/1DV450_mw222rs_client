@@ -1,5 +1,6 @@
-<form [ngFormModel]="loginForm" (submit)="doLogin($event)">
+<form *ngIf="!auth.authenticated()" [ngFormModel]="loginForm" (submit)="doLogin($event)">
     <input ngControl="email" type="email" placeholder="Your email">
     <input ngControl="password" type="password" placeholder="Your password">
   <button type="submit">Log in</button>
 </form>
+<div *ngIf="auth.authenticated()">You're logged in!</div>
