@@ -1,6 +1,8 @@
 import {Injectable, NgZone} from "angular2/core";
 import {Router} from "angular2/router";
 import {AuthHttp, tokenNotExpired, JwtHelper} from "angular2-jwt";
+import { Http, Headers, RequestOptions, Response } from "angular2/http";
+import C from "../../constants";
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -14,6 +16,7 @@ export class Auth {
 
   constructor(
     private authHttp: AuthHttp,
+    private http: Http,
     zone: NgZone,
     private router: Router,
     private jwtHelper: JwtHelper
@@ -25,6 +28,20 @@ export class Auth {
   public authenticated() {
     // Check if there"s an unexpired JWT
     return tokenNotExpired();
+  }
+  
+  public postLogin(loginData: JSON) {
+    let headers: Headers = new Headers({ 'X-Api-key': C.API_KEY, "Content-Type": "application/json" });
+    let options: RequestOptions = new RequestOptions({ headers: headers });
+    const body = JSON.stringify(loginData);
+
+
+    this.http.post("http://lit-river-92285.herokuapp.com/api/auth", body, options)
+        .map(val => val)
+        .subscribe((res: Response) => {
+          console.log(res.json());
+          this.login(res.json());
+        });
   }
 
   public login({token}) {
