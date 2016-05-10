@@ -1,18 +1,15 @@
 import {Reducer, Action} from "@ngrx/store";
-
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
-export const RESET = "RESET";
+import C from "../constants";
 
 export const counter: Reducer<number> = (state: number = 0, action: Action) => {
   switch (action.type) {
-    case INCREMENT:
+    case C.INCREMENT:
       return state + 1;
 
-    case DECREMENT:
+    case C.DECREMENT:
       return state - 1;
 
-    case RESET:
+    case C.RESET:
       return 0;
 
     default:

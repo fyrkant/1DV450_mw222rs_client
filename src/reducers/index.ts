@@ -1,2 +1,2 @@
-export { counter } from "./counter.ts";
+export * from "./counter.ts";
 

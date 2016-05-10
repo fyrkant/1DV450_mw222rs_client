@@ -1,4 +1,4 @@
-import { Component } from "angular2/core";
+import { Component, OnInit } from "angular2/core";
 import { Router, CanActivate } from "angular2/router";
 import { tokenNotExpired } from "angular2-jwt";
 
@@ -7,7 +7,11 @@ import {
   NoOpMapsAPILoader,
   MouseEvent,
   ANGULAR2_GOOGLE_MAPS_DIRECTIVES
-} from 'angular2-google-maps/core';
+} from "angular2-google-maps/core";
+
+import {PlaceService} from "../../services";
+
+import {Place} from "../../models";
 
 @Component({
   selector: "place-map",
@@ -17,17 +21,25 @@ import {
 
  @CanActivate(() => tokenNotExpired())
 
-export class PlaceMapComponent {
+export class PlaceMapComponent implements OnInit {
+  places: Place[];
   // google maps zoom level
-  zoom: number = 8;
+  zoom: number = 4;
 
   // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
+  lat: number = 60.673858;
+  lng: number = 12.815982;
+
+  constructor(private placeService: PlaceService) {
+  }
 
   clickedMarker(label: string, index: number) {
-    window.alert(`clicked the marker: ${label || index}`)
+    window.alert(`clicked the marker: ${label || index}`);
     this.markers.splice(index, 1);
+  }
+
+  ngOnInit() {
+    this.placeService.getPlaces();
   }
 
 
@@ -39,26 +51,26 @@ export class PlaceMapComponent {
   }
 
   markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
+    console.log("dragEnd", m, $event);
   }
 
   markers: marker[] = [
     {
       lat: 51.673858,
       lng: 7.815982,
-      label: 'A',
+      label: "A",
       draggable: true
     },
     {
       lat: 51.373858,
       lng: 7.215982,
-      label: 'poop',
+      label: "poop",
       draggable: false
     },
     {
       lat: 51.723858,
       lng: 7.895982,
-      label: 'C',
+      label: "C",
       draggable: true
     }
   ]
