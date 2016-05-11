@@ -15,7 +15,8 @@ export class PlaceService {
     const options: RequestOptions = new RequestOptions({ headers });
 
     return this.http.get(`${C.BASE_API_URL}/places`, options)
-      .map(val => console.log(val.json()))
+      .map(val => console.log(val.json().data))
+      // .map(places => places.map(({attributes}) => ({name: attributes.name, lat: attributes.lat, lng: attributes.lng})))
       .subscribe(p => console.log(p));
   }
 

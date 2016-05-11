@@ -16,6 +16,7 @@ import {
 } from "../../services";
 
 import {Place} from "../../models";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: "place-map",
@@ -26,7 +27,7 @@ import {Place} from "../../models";
  @CanActivate(() => tokenNotExpired())
 
 export class PlaceMapComponent implements OnInit {
-  places: Place[];
+  places: Observable<any>;
   // google maps zoom level
   zoom: number = 4;
 
