@@ -9,7 +9,11 @@ import {
   ANGULAR2_GOOGLE_MAPS_DIRECTIVES
 } from "angular2-google-maps/core";
 
-import {PlaceService} from "../../services";
+import {
+  EventService,
+  PlaceService,
+  TagService
+} from "../../services";
 
 import {Place} from "../../models";
 
@@ -30,7 +34,11 @@ export class PlaceMapComponent implements OnInit {
   lat: number = 60.673858;
   lng: number = 12.815982;
 
-  constructor(private placeService: PlaceService) {
+  constructor(
+    private placeService: PlaceService,
+    private eventService: EventService,
+    private tagService: TagService
+  ) {
   }
 
   clickedMarker(label: string, index: number) {
@@ -40,6 +48,8 @@ export class PlaceMapComponent implements OnInit {
 
   ngOnInit() {
     this.placeService.getPlaces();
+    this.eventService.getEvents();
+    this.tagService.getTags();
   }
 
 

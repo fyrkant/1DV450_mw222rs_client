@@ -10,7 +10,7 @@ export class EventService {
   constructor(private authHttp: AuthHttp, private http: Http) {
   }
 
-  public getPlaces() {
+  public getEvents() {
     const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
     const options: RequestOptions = new RequestOptions({ headers });
 

@@ -11,7 +11,11 @@ import { MATERIAL_PROVIDERS } from "ng2-material/all";
 import { provideStore } from "@ngrx/store";
 import {AUTH_PROVIDERS, JwtHelper} from "angular2-jwt";
 
-import {PlaceService} from "./services";
+import {
+  EventService,
+  PlaceService,
+  TagService
+} from "./services";
 
 import {
   ANGULAR2_GOOGLE_MAPS_PROVIDERS
@@ -24,6 +28,8 @@ import initialState from "./initial-state";
 
 bootstrap(AppComponent, [
   PlaceService,
+  EventService,
+  TagService,
   ROUTER_PROVIDERS,
   ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   HTTP_PROVIDERS,
