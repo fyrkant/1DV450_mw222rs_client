@@ -15,7 +15,7 @@ export class EventService {
     const options: RequestOptions = new RequestOptions({ headers });
 
     return this.http.get(`${C.BASE_API_URL}/events`, options)
-      .map(val => console.log(val.json()))
+      .map(val => val.json())
       .subscribe(p => console.log(p));
   }
 
