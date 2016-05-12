@@ -6,13 +6,13 @@
   (mapClick)="mapClicked($event)">
 
   <sebm-google-map-marker
-    *ngFor="#m of markers; #i = index"
-    (markerClick)="clickedMarker(m.label, i)"
-    [latitude]="m.lat"
-    [longitude]="m.lng"
-    [label]="m.label"
-    [markerDraggable]="m.draggable"
-    (dragEnd)="markerDragEnd(m, $event)">
+    *ngFor="#p of places | async; #i = index"
+    (markerClick)="clickedMarker(p.name, i)"
+    [latitude]="p.lat"
+    [longitude]="p.lng"
+    [label]="p.name"
+    [markerDraggable]="p.draggable"
+    (dragEnd)="markerDragEnd(p, $event)">
   </sebm-google-map-marker>
 
 </sebm-google-map>

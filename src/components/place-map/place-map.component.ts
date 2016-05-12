@@ -27,7 +27,7 @@ import {Observable} from "rxjs/Observable";
  @CanActivate(() => tokenNotExpired())
 
 export class PlaceMapComponent implements OnInit {
-  places: Observable<any>;
+  places: Observable<Place>;
   // google maps zoom level
   zoom: number = 4;
 
@@ -48,7 +48,7 @@ export class PlaceMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.placeService.getPlaces();
+    this.places = this.placeService.getPlaces();
     this.eventService.getEvents();
     this.tagService.getTags();
   }
