@@ -28,6 +28,9 @@ import {Observable} from "rxjs/Observable";
 
 export class PlaceMapComponent implements OnInit {
   places: Observable<Place>;
+  events: Observable<any>;
+  tags: Observable<any>;
+
   // google maps zoom level
   zoom: number = 4;
 
@@ -43,14 +46,13 @@ export class PlaceMapComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number) {
-    window.alert(`clicked the marker: ${label || index}`);
-    this.markers.splice(index, 1);
+    // window.alert(`clicked the marker: ${label || index}`);
   }
 
   ngOnInit() {
     this.places = this.placeService.getPlaces();
-    this.eventService.getEvents();
-    this.tagService.getTags();
+    this.events = this.eventService.getEvents();
+    this.tags = this.tagService.getTags();
   }
 
 
@@ -61,35 +63,8 @@ export class PlaceMapComponent implements OnInit {
     // });
   }
 
-  markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log("dragEnd", m, $event);
+  markerDragEnd(p: Place, $event: MouseEvent) {
+    console.log("dragEnd", p, $event);
   }
 
-  markers: marker[] = [
-    {
-      lat: 51.673858,
-      lng: 7.815982,
-      label: "A",
-      draggable: true
-    },
-    {
-      lat: 51.373858,
-      lng: 7.215982,
-      label: "poop",
-      draggable: false
-    },
-    {
-      lat: 51.723858,
-      lng: 7.895982,
-      label: "C",
-      draggable: true
-    }
-  ]
-}
-// just an interface for type safety.
-interface marker {
-  lat: number;
-  lng: number;
-  label?: string;
-  draggable: boolean;
 }

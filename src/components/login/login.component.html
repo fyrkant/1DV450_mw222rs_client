@@ -1,6 +1,14 @@
-<form *ngIf="!auth.authenticated()" [ngFormModel]="loginForm" (submit)="doLogin($event)">
-    <input ngControl="email" type="email" placeholder="Your email">
-    <input ngControl="password" type="password" placeholder="Your password">
-  <button type="submit">Log in</button>
-</form>
-<div *ngIf="auth.authenticated()">You're logged in!</div>
+<md-card>
+  <md-card-title>Log in</md-card-title>
+  <md-card-content>
+    <form *ngIf="!auth.authenticated()" [ngFormModel]="loginForm" (submit)="doLogin($event)">
+        <input ngControl="email" type="email" placeholder="Your email">
+        <input ngControl="password" type="password" placeholder="Your password">
+      <md-card-actions>
+        <button md-button type="submit">Log in</button>
+      </md-card-actions>
+    </form>
+
+    <div *ngIf="auth.authenticated()">You're logged in!</div>
+  </md-card-content>
+</md-card>

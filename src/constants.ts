@@ -14,9 +14,13 @@ const C = {
   DEAUTHENTICATE: "DEAUTHENTICATE",
 
   // API KEY
-  API_KEY: "30f6320f68d94d5987f025ed6f646aa3",
+  API_KEY: "d32daaaf34ec4a919941735879dc57b9",
 
-  BASE_API_URL: "http://lit-river-92285.herokuapp.com/api"
+  // API_KEY: "30f6320f68d94d5987f025ed6f646aa3",
+
+  BASE_API_URL: "http://localhost:3000/api"
+
+  // "http://lit-river-92285.herokuapp.com/api"
 
 };
 

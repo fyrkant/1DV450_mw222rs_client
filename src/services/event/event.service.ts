@@ -17,8 +17,8 @@ export class EventService {
     const options: RequestOptions = new RequestOptions({ headers });
 
     return this.http.get(this.url, options)
-      .map(val => val.json())
-      .subscribe(p => console.log(p));
+      .map(val => val.json().data);
+      // .subscribe(p => console.log(p));
   }
 
 }

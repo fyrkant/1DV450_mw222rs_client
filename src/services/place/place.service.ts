@@ -4,6 +4,7 @@ import { Http, Headers, RequestOptions, Response } from "angular2/http";
 import C from "../../constants";
 
 import "rxjs/operator/map";
+import "rxjs/operator/do";
 
 @Injectable()
 export class PlaceService {
@@ -17,7 +18,27 @@ export class PlaceService {
 
     return this.http.get(this.url, options)
       .map(val => val.json().data)
-      .map(places => places.map(({attributes: {name, lat, lng}}) => ({ name, lat: parseFloat(lat), lng: parseFloat(lng) })));
+      .do(v => console.log(v))
+      .map(places => places.map(
+        (
+          { attributes: {
+            name,
+            lat,
+            lng
+          },
+          id,
+          relationships
+        }
+        ) =>
+        (
+          {
+            id: parseInt(id),
+            name,
+            lat: parseFloat(lat),
+            lng: parseFloat(lng),
+            relationships
+          }))
+      );
       // .subscribe(p => console.log(p));
   }
 
