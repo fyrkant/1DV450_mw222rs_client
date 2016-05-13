@@ -7,6 +7,7 @@ import "rxjs/operator/map";
 
 @Injectable()
 export class PlaceService {
+  url: string = `${C.BASE_API_URL}/places`;
   constructor(private authHttp: AuthHttp, private http: Http) {
   }
 
@@ -14,7 +15,7 @@ export class PlaceService {
     const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
     const options: RequestOptions = new RequestOptions({ headers });
 
-    return this.http.get(`${C.BASE_API_URL}/places`, options)
+    return this.http.get(this.url, options)
       .map(val => val.json().data)
       .map(places => places.map(({attributes: {name, lat, lng}}) => ({ name, lat: parseFloat(lat), lng: parseFloat(lng) })));
       // .subscribe(p => console.log(p));

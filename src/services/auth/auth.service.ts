@@ -9,6 +9,7 @@ export class Auth {
   refreshSubscription: any;
   user: Object;
   zoneImpl: NgZone;
+  url: string = `${C.BASE_API_URL}/auth`;
 
   constructor(
     private http: Http,
@@ -30,7 +31,7 @@ export class Auth {
     const body = JSON.stringify(loginData);
 
 
-    this.http.post(`${C.BASE_API_URL}/auth`, body, options)
+    this.http.post(this.url, body, options)
         .map(val => val)
         .subscribe((res: Response) => {
           console.log(res.json());

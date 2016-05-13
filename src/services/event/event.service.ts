@@ -7,6 +7,8 @@ import "rxjs/operator/map";
 
 @Injectable()
 export class EventService {
+  url: string = `${C.BASE_API_URL}/events`;
+
   constructor(private authHttp: AuthHttp, private http: Http) {
   }
 
@@ -14,7 +16,7 @@ export class EventService {
     const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
     const options: RequestOptions = new RequestOptions({ headers });
 
-    return this.http.get(`${C.BASE_API_URL}/events`, options)
+    return this.http.get(this.url, options)
       .map(val => val.json())
       .subscribe(p => console.log(p));
   }
