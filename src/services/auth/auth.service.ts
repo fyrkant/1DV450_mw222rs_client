@@ -1,7 +1,7 @@
-import { Injectable, NgZone } from "angular2/core";
-import { Router } from "angular2/router";
+import { Injectable, NgZone } from "@angular/core";
+import { Router } from "@angular/router-deprecated";
 import { tokenNotExpired, JwtHelper } from "angular2-jwt";
-import { Http, Headers, RequestOptions, Response } from "angular2/http";
+import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import C from "../../constants";
 
 @Injectable()

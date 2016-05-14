@@ -1,5 +1,5 @@
-import { Component, OnInit } from "angular2/core";
-import { Router, CanActivate } from "angular2/router";
+import { Component, OnInit } from "@angular/core";
+import { Router, CanActivate } from "@angular/router-deprecated";
 import { tokenNotExpired } from "angular2-jwt";
 
 import {

@@ -1,11 +1,11 @@
-import { Component } from "angular2/core";
+import { Component } from "@angular/core";
 import {
   ControlGroup,
   FormBuilder,
   FORM_DIRECTIVES,
   FORM_BINDINGS,
   Validators
-} from "angular2/common";
+} from "@angular/common";
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";

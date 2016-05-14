@@ -1,14 +1,16 @@
-import { Component } from "angular2/core";
-import { Control } from "angular2/common";
-import { RouteConfig
-       , Location
-       , LocationStrategy
-       , HashLocationStrategy
-       , ROUTER_DIRECTIVES
-       , ROUTER_PROVIDERS } from "angular2/router";
+import { Component } from "@angular/core";
+import { Control } from "@angular/common";
+import { RouteConfig, ROUTER_DIRECTIVES } from "@angular/router-deprecated";
 
-import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from "ng2-material/all";
+import { MdToolbar } from "@angular2-material/toolbar";
+import { MdButton } from "@angular2-material/button";
 import {Auth} from "./services";
+
+import {
+  EventService,
+  PlaceService,
+  TagService
+} from "./services";
 
 import {
   AboutComponent,
@@ -22,9 +24,13 @@ import "../sass/base.scss";
 @Component({
     selector: "app",
     template: require("./app.component.html"),
-    styles: [require("normalize.css")],
-    providers: [ Auth ],
-    directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES]
+    providers: [
+      Auth,
+      PlaceService,
+      EventService,
+      TagService
+    ],
+    directives: [ROUTER_DIRECTIVES, MdToolbar, MdButton]
 })
 @RouteConfig([
   {

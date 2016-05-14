@@ -1,41 +1,28 @@
-import { bootstrap } from "angular2/platform/browser";
-import { provide } from "angular2/core";
-import { HTTP_PROVIDERS }    from "angular2/http";
-import { RouteConfig
-       , Location
+import { bootstrap } from "@angular/platform-browser-dynamic";
+import { provide, enableProdMode } from "@angular/core";
+import { ROUTER_PROVIDERS } from "@angular/router-deprecated";
+import { HTTP_PROVIDERS } from "@angular/http";
+import { Location
        , LocationStrategy
-       , HashLocationStrategy
-       , ROUTER_PROVIDERS } from "angular2/router";
+       , HashLocationStrategy } from "@angular/common";
 
-import { MATERIAL_PROVIDERS } from "ng2-material/all";
 import { provideStore } from "@ngrx/store";
-import {AUTH_PROVIDERS, JwtHelper} from "angular2-jwt";
-
-import {
-  EventService,
-  PlaceService,
-  TagService
-} from "./services";
-
-import {
-  ANGULAR2_GOOGLE_MAPS_PROVIDERS
-} from "angular2-google-maps/core";
+import { AUTH_PROVIDERS, JwtHelper } from "angular2-jwt";
 
 import { AppComponent } from "./app.component";
 
 import {counter} from "./reducers/";
 import initialState from "./initial-state";
 
+if (process.env.ENV === "production") {
+  enableProdMode();
+}
+
 bootstrap(AppComponent, [
-  PlaceService,
-  EventService,
-  TagService,
-  ROUTER_PROVIDERS,
-  ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   HTTP_PROVIDERS,
+  ROUTER_PROVIDERS,
   AUTH_PROVIDERS,
   JwtHelper,
-  MATERIAL_PROVIDERS,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
   provideStore({ counter }, initialState)
 ])
