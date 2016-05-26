@@ -6,7 +6,7 @@
   (mapClick)="mapClicked($event)">
 
   <sebm-google-map-marker
-    *ngFor="#p of places | async; #i = index"
+    *ngFor="let p of places | async; let i = index"
     (markerClick)="clickedMarker(p.name, i)"
     [latitude]="p.lat"
     [longitude]="p.lng"

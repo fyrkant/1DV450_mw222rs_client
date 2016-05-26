@@ -3,7 +3,7 @@ import { Control } from "@angular/common";
 import { RouteConfig, ROUTER_DIRECTIVES } from "@angular/router-deprecated";
 
 import { MdToolbar } from "@angular2-material/toolbar";
-import { MdButton } from "@angular2-material/button";
+import { MdButton, MdAnchor } from "@angular2-material/button";
 import {Auth} from "./services";
 
 import {

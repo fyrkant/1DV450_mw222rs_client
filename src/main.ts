@@ -6,6 +6,8 @@ import { Location
        , LocationStrategy
        , HashLocationStrategy } from "@angular/common";
 
+import {ANGULAR2_GOOGLE_MAPS_PROVIDERS} from "angular2-google-maps/core";
+
 import { provideStore } from "@ngrx/store";
 import { AUTH_PROVIDERS, JwtHelper } from "angular2-jwt";
 
@@ -21,6 +23,7 @@ if (process.env.ENV === "production") {
 bootstrap(AppComponent, [
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
+  ANGULAR2_GOOGLE_MAPS_PROVIDERS,
   AUTH_PROVIDERS,
   JwtHelper,
   provide(LocationStrategy, {useClass: HashLocationStrategy}),
