@@ -1,3 +1,4 @@
+<md-card>
   <md-card-title>Log in</md-card-title>
   <md-card-content>
     <form *ngIf="!auth.authenticated()" [ngFormModel]="loginForm" (submit)="doLogin($event)">
