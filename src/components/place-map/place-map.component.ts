@@ -9,6 +9,7 @@ import {
   ANGULAR2_GOOGLE_MAPS_DIRECTIVES
 } from "angular2-google-maps/core";
 
+
 import {
   EventService,
   PlaceService,
@@ -21,7 +22,8 @@ import {Observable} from "rxjs/Observable";
 @Component({
   selector: "place-map",
   directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES],
-  template: require("./place-map.component.html")
+  template: require("./place-map.component.html"),
+  styles: [require("./place-map.component.css")]
 })
 
  @CanActivate(() => tokenNotExpired())

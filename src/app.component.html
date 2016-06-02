@@ -1,18 +1,16 @@
-<md-toolbar color="primary">
-  <div class="md-toolbar-tools my-tooly">
-    <h2>
-      <span>PlacesApp</span>
-    </h2>
-    <span flex></span>
-    <a md-button href="" [routerLink]="['Dashboard']">Dashboard</a>
+<md-content>
+
+  <md-toolbar color="primary">
+    <span>PlacesApp</span>
+
+    <span class="demo-fill-remaining"></span>
+    <a md-button href="#" [routerLink]="['Dashboard']">Dashboard</a>
     <a md-button href="" [routerLink]="['About']">About</a>
     <a md-button href="" *ngIf="auth.authenticated()" [routerLink]="['Map']">Map</a>
     <a md-button *ngIf="!auth.authenticated()" [routerLink]="['Login']">Login</a>
     <a md-button *ngIf="auth.authenticated()" (click)="auth.logout()">Logout</a>
-  </div>
-</md-toolbar>
 
-<div class="content">
+  </md-toolbar>
+
   <router-outlet></router-outlet>
-</div>
-
+  </md-content>
