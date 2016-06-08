@@ -6,15 +6,23 @@
   (mapClick)="mapClicked($event)">
 
   <sebm-google-map-marker
-    *ngFor="let p of places | async; let i = index"
-    (markerClick)="clickedMarker(p.name, i)"
-    [latitude]="p.lat"
-    [longitude]="p.lng"
-    [label]="p.name"
-    [markerDraggable]="p.draggable"
-    (dragEnd)="markerDragEnd(p, $event)">
+    *ngFor="let e of events; let i = index"
+    (markerClick)="clickedMarker(e.name, i)"
+    [latitude]="getEventLat(e)"
+    [longitude]="getEventLng(e)"
+    [label]="e.attributes.name"
+    [markerDraggable]="false"
+    (dragEnd)="markerDragEnd(e, $event)">
     <sebm-google-map-info-window [disableAutoPan]="true">
-      {{ p.relationships | json }}
+      <h4>{{ e.attributes.name }}</h4>
+      <p>{{ e.attributes.description }}</p>
+      <p><strong>Tags:</strong></p>
+      <ul>
+        <li
+          *ngFor="let t of getEventTags(e)">
+          {{t.attributes.name}}
+        </li>
+      </ul>
     </sebm-google-map-info-window>
 
   </sebm-google-map-marker>

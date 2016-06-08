@@ -17,28 +17,9 @@ export class PlaceService {
     const options: RequestOptions = new RequestOptions({ headers });
 
     return this.http.get(this.url, options)
-      .map(val => val.json().data)
-      .do(v => console.log(v))
-      .map(places => places.map(
-        (
-          { attributes: {
-            name,
-            lat,
-            lng
-          },
-          id,
-          relationships
-        }
-        ) =>
-        (
-          {
-            id: parseInt(id),
-            name,
-            lat: parseFloat(lat),
-            lng: parseFloat(lng),
-            relationships
-          }))
-      );
+      .toPromise()
+      .then(val => val.json().data)
+      .catch(e => console.log(e));
       // .subscribe(p => console.log(p));
   }
 

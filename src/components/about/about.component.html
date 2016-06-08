@@ -1,1 +1,8 @@
-<p>About this blabla.</p>
+<p>All events</p>
+<ul>
+  <li *ngFor="let event of events" [class.current]="isCurrentUsersEvent(event.relationships.user.data.id)">
+    <strong>{{event.attributes.name}}</strong>
+    <p>{{event.attributes.description}}</p>
+    <p>{{stringDater(event.attributes.date) | date}}</p>
+  </li>
+</ul>

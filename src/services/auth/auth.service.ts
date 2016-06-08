@@ -34,15 +34,11 @@ export class Auth {
     this.http.post(this.url, body, options)
         .map(val => val)
         .subscribe((res: Response) => {
-          console.log(res.json());
           this.login(res.json());
         });
   }
 
   public login({token}) {
-    // Show the Auth0 Lock widget
-    console.log(token);
-
     const decoded = this.jwtHelper.decodeToken(token);
 
     localStorage.setItem("profile", JSON.stringify(decoded.end_user_id));
@@ -54,5 +50,15 @@ export class Auth {
     localStorage.removeItem("id_token");
     this.zoneImpl.run(() => this.user = null);
     this.router.navigate(["Login"]);
+  }
+
+  public getCurrentId() {
+    const data = localStorage.getItem("profile");
+
+    if (!data) {
+      return null;
+    }
+
+    return data["end_user_id"];
   }
 }

@@ -1,6 +1,7 @@
 {
-  "ambientDependencies": {
+  "globalDependencies": {
     "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c",
+    "hammerjs": "registry:dt/hammerjs#2.0.4+20160417130828",
     "node": "registry:dt/node#4.0.0+20160319033040"
   },
   "dependencies": {

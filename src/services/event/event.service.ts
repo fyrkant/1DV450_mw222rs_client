@@ -4,6 +4,8 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import C from "../../constants";
 
 import "rxjs/operator/map";
+import "rxjs/operator/do";
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class EventService {
@@ -17,8 +19,9 @@ export class EventService {
     const options: RequestOptions = new RequestOptions({ headers });
 
     return this.http.get(this.url, options)
-      .map(val => val.json().data);
-      // .subscribe(p => console.log(p));
+      .toPromise()
+      .then(val => val.json().data)
+      .catch(e => console.log(e));
   }
 
 }

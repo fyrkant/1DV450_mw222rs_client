@@ -9,6 +9,7 @@ import {
   ANGULAR2_GOOGLE_MAPS_DIRECTIVES
 } from "angular2-google-maps/core";
 
+import "rxjs/operator/filter";
 
 import {
   EventService,
@@ -18,6 +19,7 @@ import {
 
 import {Place} from "../../models";
 import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "place-map",
@@ -29,9 +31,9 @@ import {Observable} from "rxjs/Observable";
  @CanActivate(() => tokenNotExpired())
 
 export class PlaceMapComponent implements OnInit {
-  places: Observable<Place>;
-  events: Observable<any>;
-  tags: Observable<any>;
+  places: Array<any>;
+  events: Array<any>;
+  tags: Array<any>;
 
   // google maps zoom level
   zoom: number = 4;
@@ -52,9 +54,30 @@ export class PlaceMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.places = this.placeService.getPlaces();
-    this.events = this.eventService.getEvents();
-    this.tags = this.tagService.getTags();
+    this.placeService.getPlaces().then(places => this.places = places);
+    this.eventService.getEvents().then(e => this.events = e);
+    this.tagService.getTags().then(tags => this.tags = tags);
+  }
+
+  getEventLat(event) {
+    const place = this.places.filter(p => p.id === event.relationships.place.data.id)[0];
+    const lat = parseFloat(place.attributes.lat);
+
+    return lat;
+  }
+
+  getEventLng(event) {
+    const place = this.places.filter(p => p.id === event.relationships.place.data.id)[0];
+    const lng = parseFloat(place.attributes.lng);
+
+    return lng;
+  }
+
+  getEventTags(event) {
+    const tagIds = event.relationships.tags.data.map(obj => obj.id);
+    const tags = this.tags.filter(t => tagIds.indexOf(t.id) !== -1);
+
+    return tags;
   }
 
 
