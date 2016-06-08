@@ -46,10 +46,12 @@ export class Auth {
   }
 
   public logout() {
-    localStorage.removeItem("profile");
-    localStorage.removeItem("id_token");
-    this.zoneImpl.run(() => this.user = null);
-    this.router.navigate(["Login"]);
+    if (confirm("Are you sure that you want to log out?")) {
+      localStorage.removeItem("profile");
+      localStorage.removeItem("id_token");
+      this.zoneImpl.run(() => this.user = null);
+      this.router.navigate(["Login"]);
+    }
   }
 
   public getCurrentId() {

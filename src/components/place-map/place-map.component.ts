@@ -9,7 +9,9 @@ import {
   ANGULAR2_GOOGLE_MAPS_DIRECTIVES
 } from "angular2-google-maps/core";
 
-import "rxjs/operator/filter";
+import {MD_CARD_DIRECTIVES} from "@angular2-material/card";
+
+import {TagFilterPicker} from "../../components/tag-filter-picker/tag-filter-picker.component.ts";
 
 import {
   EventService,
@@ -17,13 +19,16 @@ import {
   TagService
 } from "../../services";
 
+import {TagFilterPipe} from "../../pipes";
+
 import {Place} from "../../models";
 import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "place-map",
-  directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES],
+  pipes: [TagFilterPipe],
+  directives: [TagFilterPicker, ANGULAR2_GOOGLE_MAPS_DIRECTIVES, MD_CARD_DIRECTIVES],
   template: require("./place-map.component.html"),
   styles: [require("./place-map.component.css")]
 })
