@@ -2,6 +2,10 @@
 
 Deployed [HERE](https://placesapp-1f378.firebaseapp.com).
 
+Login with:
+`email: kuvalis.marianna@walsh.io`
+`password: testpass`
+
 To fiddle with code:
 
 - Clone repo
