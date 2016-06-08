@@ -10,6 +10,7 @@ import {
 } from "angular2-google-maps/core";
 
 import {MD_CARD_DIRECTIVES} from "@angular2-material/card";
+import {MD_LIST_DIRECTIVES} from "@angular2-material/list";
 
 import {TagFilterPicker} from "../../components/tag-filter-picker/tag-filter-picker.component.ts";
 
@@ -28,7 +29,12 @@ import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: "place-map",
   pipes: [TagFilterPipe],
-  directives: [TagFilterPicker, ANGULAR2_GOOGLE_MAPS_DIRECTIVES, MD_CARD_DIRECTIVES],
+  directives: [
+  TagFilterPicker,
+  ANGULAR2_GOOGLE_MAPS_DIRECTIVES,
+  MD_CARD_DIRECTIVES,
+  MD_LIST_DIRECTIVES
+  ],
   template: require("./place-map.component.html"),
   styles: [require("./place-map.component.css")]
 })
@@ -65,14 +71,14 @@ export class PlaceMapComponent implements OnInit {
   }
 
   getEventLat(event) {
-    const place = this.places.filter(p => p.id === event.relationships.place.data.id)[0];
+    const place = this.places && this.places.filter(p => p.id === event.relationships.place.data.id)[0];
     const lat = parseFloat(place.attributes.lat);
 
     return lat;
   }
 
   getEventLng(event) {
-    const place = this.places.filter(p => p.id === event.relationships.place.data.id)[0];
+    const place = this.places && this.places.filter(p => p.id === event.relationships.place.data.id)[0];
     const lng = parseFloat(place.attributes.lng);
 
     return lng;
@@ -85,6 +91,11 @@ export class PlaceMapComponent implements OnInit {
     return tags;
   }
 
+  centerMapOnEvent(event) {
+    this.lat = this.getEventLat(event);
+    this.lng = this.getEventLng(event);
+    this.zoom = 7;
+  }
 
   mapClicked($event: MouseEvent) {
     // this.markers.push({

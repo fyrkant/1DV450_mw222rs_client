@@ -1,6 +1,11 @@
 
 <md-card class="map-card">
   <tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></tag-filter-picker>
+  <md-nav-list dense>
+    <md-list-item *ngFor="let e of events | tagFilter : selectedTag" (click)="centerMapOnEvent(e)" >
+      <p md-line>{{e.attributes.name}}</p>
+    </md-list-item>
+  </md-nav-list>
 </md-card>
 <sebm-google-map
   [latitude]="lat"
@@ -18,7 +23,7 @@
     [label]="e.attributes.name"
     [markerDraggable]="false"
     (dragEnd)="markerDragEnd(e, $event)">
-    <sebm-google-map-info-window [disableAutoPan]="true">
+    <sebm-google-map-info-window [disableAutoPan]="false">
       <h4>{{ e.attributes.name }}</h4>
       <p>{{ e.attributes.description }}</p>
       <p><strong>Tags:</strong></p>
