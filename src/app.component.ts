@@ -14,7 +14,6 @@ import {
 } from "./services";
 
 import {
-  AboutComponent,
   DashboardComponent,
   LoginComponent,
   PlaceMapComponent
@@ -48,11 +47,6 @@ import "../sass/base.scss";
     name: "Dashboard",
     component: DashboardComponent,
     useAsDefault: true
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: AboutComponent
   },
   {
     path: "/login",

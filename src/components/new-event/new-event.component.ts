@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import {Observable} from "rxjs/Observable";
+
+import {MD_INPUT_DIRECTIVES} from "@angular2-material/input";
 
 import {
   EventService,
@@ -7,14 +8,12 @@ import {
 } from "../../services";
 
 @Component({
-  selector: "about",
-  template: require("./about.component.html"),
-  styles: [`.current {
-    color: red;
-  }`]
+  selector: "new-event-form",
+  directives: [MD_INPUT_DIRECTIVES],
+  template: require("./new-event.component.html")
 })
 
-export class AboutComponent implements OnInit {
+export class NewEventForm implements OnInit {
   events: Promise<any>;
   userId: number;
 

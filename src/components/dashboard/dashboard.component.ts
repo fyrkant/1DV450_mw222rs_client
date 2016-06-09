@@ -6,6 +6,9 @@ import { PlaceService } from "../../services";
 
 @Component({
   selector: "dashboard",
+  styles: [`.dash-div {
+    margin: 10px;
+  }`],
   template: require("./dashboard.component.html")
 })
 

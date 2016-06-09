@@ -13,8 +13,10 @@ import {MD_CARD_DIRECTIVES} from "@angular2-material/card";
 import {MD_LIST_DIRECTIVES} from "@angular2-material/list";
 
 import {TagFilterPicker} from "../../components/tag-filter-picker/tag-filter-picker.component.ts";
+import {NewEventForm} from "../../components/new-event/new-event.component.ts";
 
 import {
+  Auth,
   EventService,
   PlaceService,
   TagService
@@ -31,6 +33,7 @@ import {Subscription} from "rxjs/Subscription";
   pipes: [TagFilterPipe],
   directives: [
   TagFilterPicker,
+  NewEventForm,
   ANGULAR2_GOOGLE_MAPS_DIRECTIVES,
   MD_CARD_DIRECTIVES,
   MD_LIST_DIRECTIVES
@@ -53,7 +56,10 @@ export class PlaceMapComponent implements OnInit {
   lat: number = 60.673858;
   lng: number = 12.815982;
 
+  formShowing = false;
+
   constructor(
+    private auth: Auth,
     private placeService: PlaceService,
     private eventService: EventService,
     private tagService: TagService
@@ -86,7 +92,7 @@ export class PlaceMapComponent implements OnInit {
 
   getEventTags(event) {
     const tagIds = event.relationships.tags.data.map(obj => obj.id);
-    const tags = this.tags.filter(t => tagIds.indexOf(t.id) !== -1);
+    const tags = this.tags && this.tags.filter(t => tagIds.indexOf(t.id) !== -1);
 
     return tags;
   }
@@ -97,6 +103,12 @@ export class PlaceMapComponent implements OnInit {
     this.zoom = 7;
   }
 
+  checkIfCurrentUsers(event) {
+    const currentUserId = this.auth.getCurrentId();
+
+    return event.id === currentUserId;
+  }
+
   mapClicked($event: MouseEvent) {
     // this.markers.push({
     //   lat: $event.coords.lat,
@@ -104,8 +116,7 @@ export class PlaceMapComponent implements OnInit {
     // });
   }
 
-  markerDragEnd(p: Place, $event: MouseEvent) {
-    console.log("dragEnd", p, $event);
+  toggleForm() {
+    this.formShowing = !this.formShowing;
   }
-
 }
