@@ -56,7 +56,7 @@
     "html-loader": "^0.4.3",
     "json-api-store": "^0.7.0",
     "jsonapi-datastore": "^0.4.0-beta",
-    "node-sass": "^3.4.2",
+    "node-sass": "^3.8.0",
     "normalize.css": "^4.1.1",
     "raw-loader": "^0.5.1",
     "reflect-metadata": "0.1.2",
