@@ -6,7 +6,6 @@ import { TagService } from "../../services";
   selector: "tag-filter-picker",
   template: `
     <div>
-
       <p>Filter by tag: <button *ngIf="selected" (click)="setTag.emit(null)">Show all events</button></p>
       <button *ngFor="let t of tags"
         [disabled]="t.id === selected"
