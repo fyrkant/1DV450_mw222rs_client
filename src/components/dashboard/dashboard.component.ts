@@ -1,8 +1,4 @@
 import { Component } from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import C from "../../constants";
-
-import { PlaceService } from "../../services";
 
 @Component({
   selector: "dashboard",
@@ -13,9 +9,4 @@ import { PlaceService } from "../../services";
 })
 
 export class DashboardComponent {
-  constructor(private placeService: PlaceService) {
-  }
-  increment() {
-    this.placeService.getPlaces();
-  }
 }

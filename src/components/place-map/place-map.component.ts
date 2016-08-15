@@ -42,7 +42,7 @@ import {Subscription} from "rxjs/Subscription";
   styles: [require("./place-map.component.css")]
 })
 
- @CanActivate(() => tokenNotExpired())
+@CanActivate(() => tokenNotExpired())
 
 export class PlaceMapComponent implements OnInit {
   places: Array<any>;
