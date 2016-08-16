@@ -7,6 +7,7 @@ import {
 import { RouteGuard } from "./services"
 
 export const appRoutes: RouterConfig = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'map', component: PlaceMapComponent, canActivate: [RouteGuard] }
