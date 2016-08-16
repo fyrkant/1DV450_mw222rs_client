@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from "@angular/core";
-import { Router } from "@angular/router-deprecated";
+import { Router } from "@angular/router";
 import { tokenNotExpired, JwtHelper } from "angular2-jwt";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import C from "../../constants";
@@ -32,10 +32,11 @@ export class Auth {
 
 
     this.http.post(this.url, body, options)
-        .map(val => val)
-        .subscribe((res: Response) => {
+        .toPromise()
+        .then((res: Response) => {
           this.login(res.json());
-        });
+        })
+        .catch(err => console.log(err));
   }
 
   public login({token}) {

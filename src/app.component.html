@@ -4,9 +4,9 @@
     <span>PlacesApp</span>
 
     <span class="demo-fill-remaining"></span>
-    <a md-button href="#" [routerLink]="['Dashboard']">Dashboard</a>
-    <a md-button href="" *ngIf="auth.authenticated()" [routerLink]="['Map']">Map</a>
-    <a md-button *ngIf="!auth.authenticated()" [routerLink]="['Login']">Login</a>
+    <a md-button href="#" [routerLink]="['dashboard']">Dashboard</a>
+    <a md-button href="" *ngIf="auth.authenticated()" [routerLink]="['map']">Map</a>
+    <a md-button *ngIf="!auth.authenticated()" [routerLink]="['login']">Login</a>
     <a md-button *ngIf="auth.authenticated()" (click)="auth.logout()">Logout</a>
 
   </md-toolbar>

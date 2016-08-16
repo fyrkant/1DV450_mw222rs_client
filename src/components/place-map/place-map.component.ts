@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, CanActivate } from "@angular/router-deprecated";
-import { tokenNotExpired } from "angular2-jwt";
 
 import {
   MapsAPILoader,
@@ -41,8 +39,6 @@ import {Subscription} from "rxjs/Subscription";
   template: require("./place-map.component.html"),
   styles: [require("./place-map.component.css")]
 })
-
-@CanActivate(() => tokenNotExpired())
 
 export class PlaceMapComponent implements OnInit {
   places: Array<any>;
