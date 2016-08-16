@@ -25,16 +25,22 @@ import {
   EventService
 } from "./services";
 
-import {DashboardComponent, LoginComponent, PlaceMapComponent} from "./components";
+import {
+  DashboardComponent,
+  LoginComponent,
+  PlaceMapComponent,
+  TagFilterPicker
+} from "./components";
 
 if (process.env.ENV === "production") enableProdMode();
 
 @NgModule({
     declarations: [
+      TagFilterPicker,
+      PlaceMapComponent,
       AppComponent,
       DashboardComponent,
-      LoginComponent,
-      PlaceMapComponent
+      LoginComponent
     ],
     providers: [
       Auth,
