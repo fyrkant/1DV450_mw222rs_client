@@ -6,7 +6,7 @@ import {
   MapsAPILoader,
   NoOpMapsAPILoader,
   MouseEvent,
-  ANGULAR2_GOOGLE_MAPS_DIRECTIVES
+  GOOGLE_MAPS_DIRECTIVES
 } from "angular2-google-maps/core";
 
 import {MD_CARD_DIRECTIVES} from "@angular2-material/card";
@@ -34,7 +34,7 @@ import {Subscription} from "rxjs/Subscription";
   directives: [
   TagFilterPicker,
   NewEventForm,
-  ANGULAR2_GOOGLE_MAPS_DIRECTIVES,
+  GOOGLE_MAPS_DIRECTIVES,
   MD_CARD_DIRECTIVES,
   MD_LIST_DIRECTIVES
   ],

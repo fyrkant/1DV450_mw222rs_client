@@ -2,10 +2,9 @@ import { Component } from "@angular/core";
 import {
   ControlGroup,
   FormBuilder,
-  FORM_DIRECTIVES,
-  FORM_BINDINGS,
   Validators
 } from "@angular/common";
+import {FORM_DIRECTIVES} from "@angular/forms"
 import {Subject} from "rxjs/Subject";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
@@ -15,13 +14,10 @@ import {Auth} from "../../services";
 @Component({
   selector: "login",
   template: require("./login.component.html"),
-  viewBindings: [FORM_BINDINGS],
   directives: [FORM_DIRECTIVES]
 })
 
 export class LoginComponent {
-  click$ = new Subject()
-    .map(val => val + "hello");
 
   loginForm;
   constructor(fb: FormBuilder, private auth: Auth) {
