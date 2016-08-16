@@ -1,21 +1,28 @@
 import { Component } from "@angular/core";
-import {FORM_DIRECTIVES, FormBuilder, Validators} from "@angular/forms"
+import {REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormControl, FormGroup} from "@angular/forms"
 import {Auth} from "../../services";
 import {Router} from "@angular/router";
 
 @Component({
   selector: "login",
+  viewProviders: [FormBuilder],
   template: require("./login.component.html"),
-  directives: [FORM_DIRECTIVES]
+  directives: [REACTIVE_FORM_DIRECTIVES]
 })
 
 export class LoginComponent {
 
-  loginForm;
+  fb: FormBuilder;
+  loginForm: FormGroup;
+  email: FormControl;
+  password: FormControl;
+
   constructor(fb: FormBuilder, private auth: Auth, private router: Router) {
+    this.email = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
     this.loginForm = fb.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required]
+      email: this.email,
+      password: this.password
     });
   }
   doLogin(event) {

@@ -14,7 +14,7 @@ export class TagService {
   }
 
   public getTags() {
-    const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
+    const headers: Headers = new Headers({ "X-Api-key": C.API_KEY});
     const options: RequestOptions = new RequestOptions({ headers });
 
     return this.http.get(this.url, options)

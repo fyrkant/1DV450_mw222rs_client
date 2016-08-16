@@ -1,15 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 
-import {
-  MapsAPILoader,
-  NoOpMapsAPILoader,
-  MouseEvent,
-  GOOGLE_MAPS_DIRECTIVES
-} from "angular2-google-maps/core";
-
-import {MD_CARD_DIRECTIVES} from "@angular2-material/card";
-import {MD_LIST_DIRECTIVES} from "@angular2-material/list";
-
 import {TagFilterPicker} from "../../components/tag-filter-picker/tag-filter-picker.component.ts";
 import {NewEventForm} from "../../components/new-event/new-event.component.ts";
 
@@ -31,10 +21,7 @@ import {Subscription} from "rxjs/Subscription";
   pipes: [TagFilterPipe],
   directives: [
   TagFilterPicker,
-  NewEventForm,
-  GOOGLE_MAPS_DIRECTIVES,
-  MD_CARD_DIRECTIVES,
-  MD_LIST_DIRECTIVES
+  NewEventForm
   ],
   template: require("./place-map.component.html"),
   styles: [require("./place-map.component.css")]

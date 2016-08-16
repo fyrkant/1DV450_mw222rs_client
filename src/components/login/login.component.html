@@ -1,9 +1,9 @@
 <md-card>
   <md-card-title>Log in</md-card-title>
   <md-card-content>
-    <form *ngIf="!auth.authenticated()" [ngFormModel]="loginForm" (submit)="doLogin($event)">
-        <input ngControl="email" type="email" placeholder="Your email">
-        <input ngControl="password" type="password" placeholder="Your password">
+    <form *ngIf="!auth.authenticated()" [formGroup]="loginForm" (submit)="doLogin($event)">
+        <input [formControl]="email" type="email" placeholder="Your email">
+        <input [formControl]="password" type="password" placeholder="Your password">
       <md-card-actions>
         <button md-button type="submit">Log in</button>
       </md-card-actions>
