@@ -5,11 +5,7 @@
   <new-event-form *ngIf="formShowing"></new-event-form>
   <span *ngIf="!formShowing">
     <tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></tag-filter-picker>
-    <md-nav-list dense>
-      <md-list-item *ngFor="let e of events | tagFilter : selectedTag" (click)="centerMapOnEvent(e)" >
-        <p md-line>{{e.attributes.name}}</p>
-      </md-list-item>
-    </md-nav-list>
+    <event-list [events]="events" [selectedTag]="selectedTag" (onSelected)="centerMapOnEvent($event)" ></event-list>
   </span>
 </md-card>
 <sebm-google-map

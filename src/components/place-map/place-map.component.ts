@@ -10,7 +10,7 @@ import {
   TagService
 } from "../../services";
 
-import {TagFilterPipe} from "../../pipes";
+import {TagFilterPipe, SearchPipe} from "../../pipes";
 
 import {Place} from "../../models";
 import {Observable} from "rxjs/Observable";
@@ -18,7 +18,7 @@ import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "place-map",
-  pipes: [TagFilterPipe],
+  pipes: [TagFilterPipe, SearchPipe],
   directives: [
   TagFilterPicker,
   NewEventForm

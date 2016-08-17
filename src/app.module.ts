@@ -1,7 +1,7 @@
-import { NgModule, provide, enableProdMode }       from '@angular/core';
+import { NgModule, provide, enableProdMode }       from "@angular/core";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
-import { BrowserModule  } from '@angular/platform-browser';
-import { AppComponent }   from './app.component';
+import { BrowserModule  } from "@angular/platform-browser";
+import { AppComponent }   from "./app.component";
 
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
@@ -31,7 +31,8 @@ import {
   LoginComponent,
   PlaceMapComponent,
   TagFilterPicker,
-  FlashMessageComponent
+  FlashMessageComponent,
+  EventListComponent
 } from "./components";
 
 if (process.env.ENV === "production") enableProdMode();
@@ -43,7 +44,8 @@ if (process.env.ENV === "production") enableProdMode();
       AppComponent,
       DashboardComponent,
       LoginComponent,
-      FlashMessageComponent
+      FlashMessageComponent,
+      EventListComponent
     ],
     providers: [
       FlashService,

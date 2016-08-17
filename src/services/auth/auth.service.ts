@@ -37,7 +37,7 @@ export class Auth {
         .toPromise()
         .then((res: Response) => {
           this.login(res.json());
-          this.flash.setMessage('Logged in successfully!')
+          this.flash.setMessage("Logged in successfully!");
         })
         .catch(err => {
           const error = err.json();
