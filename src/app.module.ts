@@ -22,14 +22,16 @@ import {
   Auth,
   PlaceService,
   TagService,
-  EventService
+  EventService,
+  FlashService
 } from "./services";
 
 import {
   DashboardComponent,
   LoginComponent,
   PlaceMapComponent,
-  TagFilterPicker
+  TagFilterPicker,
+  FlashMessageComponent
 } from "./components";
 
 if (process.env.ENV === "production") enableProdMode();
@@ -40,9 +42,11 @@ if (process.env.ENV === "production") enableProdMode();
       PlaceMapComponent,
       AppComponent,
       DashboardComponent,
-      LoginComponent
+      LoginComponent,
+      FlashMessageComponent
     ],
     providers: [
+      FlashService,
       Auth,
       EventService,
       TagService,

@@ -10,6 +10,7 @@
     <a md-button *ngIf="auth.authenticated()" (click)="auth.logout()">Logout</a>
 
   </md-toolbar>
+  <flash-message></flash-message>
 
   <router-outlet></router-outlet>
 </md-layout>

@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { tokenNotExpired, JwtHelper } from "angular2-jwt";
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import C from "../../constants";
+import { FlashService } from "../flash/flash.service";
 
 @Injectable()
 export class Auth {
@@ -15,7 +16,8 @@ export class Auth {
     private http: Http,
     zone: NgZone,
     private router: Router,
-    private jwtHelper: JwtHelper
+    private jwtHelper: JwtHelper,
+    private flash: FlashService
     ) {
     this.zoneImpl = zone;
     this.user = JSON.parse(localStorage.getItem("profile"));
@@ -35,8 +37,12 @@ export class Auth {
         .toPromise()
         .then((res: Response) => {
           this.login(res.json());
+          this.flash.setMessage('Logged in successfully!')
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          const error = err.json();
+          this.flash.setError(error.message || 'Oh dear, something went wrong!')
+        });
   }
 
   public login({token}) {
@@ -52,6 +58,7 @@ export class Auth {
       localStorage.removeItem("id_token");
       this.zoneImpl.run(() => this.user = null);
       this.router.navigate(["dashboard"]);
+      this.flash.setMessage('Successfully logged out!')
     }
   }
 

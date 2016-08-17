@@ -1,6 +1,6 @@
 export class Place {
-  id: number;
-  name: string;
-  lat: number;
-  lng: number;
+  public id: number;
+  public name: string;
+  public lat: number;
+  public lng: number;
 }

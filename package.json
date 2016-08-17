@@ -8,7 +8,7 @@
     "build": "rm -rf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
     "deploy": "npm run build && firebase deploy",
     "lint": "tslint src/**/*.ts",
-    "postinstall": "trash typings && typings i"
+    "postinstall": "rm -rf typings && typings install"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "html-webpack-plugin": "^2.10.0",
     "raw-loader": "^0.5.1",
     "ts-loader": "^0.8.2",
-    "tslint": "^3.6.0",
+    "tslint": "^3.14.0",
     "typescript": "^1.8.10",
     "typings": "^0.7.9",
     "webpack": "^1.12.14",

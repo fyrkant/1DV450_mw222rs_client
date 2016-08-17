@@ -5,7 +5,7 @@ import C from "../../constants";
 
 import "rxjs/operator/map";
 import "rxjs/operator/do";
-import 'rxjs/add/operator/toPromise';
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class EventService {
