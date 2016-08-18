@@ -6,10 +6,8 @@ import { Pipe, PipeTransform } from "@angular/core";
 export class SearchPipe implements PipeTransform {
   transform(events: any, term): any {
     if (events) {
-      console.log(term);
-      console.log(events);
-
-      return events.length !== 0 && events.filter(event => event.attributes.name.startsWith(term));
+      return events.length !== 0 && events.filter(
+        ({attributes}) => attributes.name.toLowerCase().includes(term.toLowerCase()));
     }
   }
 }
