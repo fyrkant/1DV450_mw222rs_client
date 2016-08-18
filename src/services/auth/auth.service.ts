@@ -68,7 +68,6 @@ export class Auth {
     if (!data) {
       return null;
     }
-
-    return data["end_user_id"];
+    return data;
   }
 }

@@ -1,16 +1,16 @@
 
 <md-card class="map-card">
-  <button *ngIf="!formShowing" (click)="toggleForm()">Add new event</button>
-  <button *ngIf="formShowing" (click)="toggleForm()">Hide form</button>
+  <button md-raised-button *ngIf="!formShowing" (click)="toggleForm()">Add new event</button>
+  <button md-raised-button *ngIf="formShowing" (click)="toggleForm()">Hide form</button>
   <new-event-form *ngIf="formShowing"></new-event-form>
   <span *ngIf="!formShowing">
     <search-box (change)="searchTerm = $event"></search-box>
     <tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></tag-filter-picker>
-    <event-list 
-      [events]="events" 
-      [selectedTag]="selectedTag" 
-      [searchTerm]="searchTerm" 
-      (onSelected)="centerMapOnEvent($event)" 
+    <event-list
+      [events]="events"
+      [selectedTag]="selectedTag"
+      [searchTerm]="searchTerm"
+      (onSelected)="centerMapOnEvent($event)"
     ></event-list>
   </span>
 </md-card>
@@ -23,23 +23,25 @@
 
 
   <sebm-google-map-marker
-    *ngFor="let e of events | searchPipe: searchTerm | tagFilter : selectedTag; let i = index"
-    (markerClick)="clickedMarker(e.name, i)"
-    [latitude]="getEventLat(e)"
-    [longitude]="getEventLng(e)"
-    [label]="e.attributes.name"
-    [markerDraggable]="false"
-    (dragEnd)="markerDragEnd(e, $event)">
+    *ngFor="let place of places; let i = index"
+    (markerClick)="clickedMarker(place.name, i)"
+    [latitude]="getPlaceLat(place)"
+    [longitude]="getPlaceLng(place)"
+    [label]="place.attributes.name"
+    [markerDraggable]="false">
     <sebm-google-map-info-window [disableAutoPan]="false">
-      <h4>{{ e.attributes.name }}</h4>
-      <p>{{ e.attributes.description }}</p>
-      <p><strong>Tags:</strong></p>
-      <ul>
-        <li
-          *ngFor="let t of getEventTags(e)">
-          {{t.attributes.name}}
-        </li>
-      </ul>
+      <span *ngFor="let e of getEventsOnPlace(place)">
+        <p *ngIf="checkIfCurrentUsers(e)">This is mine.</p>
+        <h4>{{ e.attributes.name }}</h4>
+        <p>{{ e.attributes.description }}</p>
+        <p><strong>Tags:</strong></p>
+        <ul>
+          <li
+            *ngFor="let t of getEventTags(e)">
+            {{t.attributes.name}}
+          </li>
+        </ul>
+      </span>
     </sebm-google-map-info-window>
 
   </sebm-google-map-marker>

@@ -13,8 +13,6 @@ import {
 import {TagFilterPipe, SearchPipe} from "../../pipes";
 
 import {Place} from "../../models";
-import {Observable} from "rxjs/Observable";
-import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "place-map",
@@ -73,11 +71,25 @@ export class PlaceMapComponent implements OnInit {
     return lng;
   }
 
+  getPlaceLat(place) {
+    return parseFloat(place.attributes.lat);
+  }
+
+  getPlaceLng(place) {
+    return parseFloat(place.attributes.lng);
+  }
+
   getEventTags(event) {
     const tagIds = event.relationships.tags.data.map(obj => obj.id);
     const tags = this.tags && this.tags.filter(t => tagIds.indexOf(t.id) !== -1);
 
     return tags;
+  }
+
+  getEventsOnPlace(place) {
+    const eventsOnPlace = this.events && this.events.filter(event => event.relationships.place.data.id === place.id);
+
+    return eventsOnPlace;
   }
 
   centerMapOnEvent(event) {
@@ -89,7 +101,7 @@ export class PlaceMapComponent implements OnInit {
   checkIfCurrentUsers(event) {
     const currentUserId = this.auth.getCurrentId();
 
-    return event.id === currentUserId;
+    return event.relationships.user.data.id === currentUserId;
   }
 
   mapClicked($event: MouseEvent) {

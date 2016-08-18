@@ -1,23 +1,17 @@
+<md-card-title>New event</md-card-title>
+<md-card-content>
+  <form [formGroup]="eventForm" (submit)="saveEvent($event)">
+    <md-input class="event-input" [formControl]="name" type="text" placeholder="Name" ></md-input>
+    <md-input class="event-input" [formControl]="description" type="text" placeholder="Description" ></md-input>
+    <md-input class="event-input" [formControl]="date" type="date" placeholder="Date and time" ></md-input>
+    <!--<md-input class="event-input" [formControl]="place_id" type="text" placeholder="Place" ></md-input>-->
+    <select placeholder="Select location" name="place" id="place" [formControl]="place_id">
+      <option value="" disabled selected>Select Place</option>
+      <option *ngFor="let place of places" [value]="place.id">{{place.attributes.name}}</option>
+    </select>
+    <br />
+    <button md-raised-button type="button" [disabled]="eventForm.pristine" (click)="clearForm()">Clear</button>
+    <button md-raised-button type="submit" [disabled]="!eventForm.valid" >Save</button>
 
-<form>
-  <md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="Google">
-  </md-input>
-
-  <table style="width: 100%" cellspacing="0"><tr>
-    <td><md-input placeholder="First name" style="width: 100%"></md-input></td>
-    <td><md-input placeholder="Long Last Name That Will Be Truncated" style="width: 100%"></md-input></td>
-  </tr></table>
-  <p>
-    <md-input class="demo-full-width" placeholder="Address" value="1600 Amphitheatre Pkway"></md-input>
-    <md-input class="demo-full-width" placeholder="Address 2"></md-input>
-  </p>
-  <table style="width: 100%" cellspacing="0"><tr>
-    <td><md-input class="demo-full-width" placeholder="City" value="Mountain View"></md-input></td>
-    <td><md-input class="demo-full-width" placeholder="State" maxLength="2" value="CA"></md-input></td>
-    <td><md-input #postalCode class="demo-full-width" maxLength="5"
-                  placeholder="Postal Code"
-                  value="94043">
-      <md-hint align="end">{{postalCode.characterCount}} / 5</md-hint>
-    </md-input></td>
-  </tr></table>
-</form>
+  </form>
+  </md-card-content>

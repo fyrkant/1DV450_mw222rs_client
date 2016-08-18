@@ -23,5 +23,17 @@ export class EventService {
       .then(val => val.json().data)
       .catch(e => console.log(e));
   }
+  public saveEvent(event) {
+    const headers: Headers = new Headers({ "X-Api-key": C.API_KEY});
+    const options: RequestOptions = new RequestOptions({ headers });
+    const payload = event;
+
+    console.log(payload);
+
+    this.authHttp.post(this.url, payload, options)
+      .toPromise()
+      .then(console.log)
+      .catch(console.log);
+  }
 
 }

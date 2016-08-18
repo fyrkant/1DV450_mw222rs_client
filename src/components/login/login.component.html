@@ -2,13 +2,12 @@
   <md-card-title>Log in</md-card-title>
   <md-card-content>
     <form *ngIf="!auth.authenticated()" [formGroup]="loginForm" (submit)="doLogin($event)">
-        <input [formControl]="email" type="email" placeholder="Your email">
-        <input [formControl]="password" type="password" placeholder="Your password">
+        <md-input [formControl]="email" type="email" placeholder="Your email"></md-input>
+        <md-input [formControl]="password" type="password" placeholder="Your password"></md-input>
       <md-card-actions>
-        <button md-button type="submit">Log in</button>
+        <button [disabled]="!loginForm.valid" md-raised-button type="submit">Log in</button>
       </md-card-actions>
     </form>
-
     <div *ngIf="auth.authenticated()">You're logged in!</div>
   </md-card-content>
 </md-card>

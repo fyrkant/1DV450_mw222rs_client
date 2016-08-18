@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import {REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormControl, FormGroup} from "@angular/forms"
+import {REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormControl, FormGroup} from "@angular/forms";
 import {Auth} from "../../services";
 import {Router} from "@angular/router";
 
@@ -18,8 +18,8 @@ export class LoginComponent {
   password: FormControl;
 
   constructor(fb: FormBuilder, private auth: Auth, private router: Router) {
-    this.email = new FormControl('', Validators.required);
-    this.password = new FormControl('', Validators.required);
+    this.email = new FormControl("", Validators.required);
+    this.password = new FormControl("", Validators.required);
     this.loginForm = fb.group({
       email: this.email,
       password: this.password
