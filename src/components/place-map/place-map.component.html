@@ -30,10 +30,12 @@
     [label]="place.attributes.name"
     [markerDraggable]="false">
     <sebm-google-map-info-window [disableAutoPan]="false">
+      <h3>{{ place.attributes.name}} has these events:</h3>
       <span *ngFor="let e of getEventsOnPlace(place)">
-        <p *ngIf="checkIfCurrentUsers(e)">This is mine.</p>
-        <h4>{{ e.attributes.name }}</h4>
-        <p>{{ e.attributes.description }}</p>
+        <h4>Name: {{ e.attributes.name }}</h4>
+        <p>Description: {{ e.attributes.description }}</p>
+        <p>Date: {{ e.attributes.date | date}}</p>
+        <button *ngIf="checkIfCurrentUsers(e)" (click)="deleteEvent(e)">Delete</button>
         <span *ngIf="eventHasTag(e)">
           <p><strong>Tag:</strong></p>
           <ul>
@@ -43,6 +45,7 @@
             </li>
           </ul>
         </span>
+        <hr />
       </span>
     </sebm-google-map-info-window>
 

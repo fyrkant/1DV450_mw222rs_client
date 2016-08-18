@@ -7,7 +7,8 @@ import {
   Auth,
   EventService,
   PlaceService,
-  TagService
+  TagService,
+  FlashService
 } from "../../services";
 
 import {TagFilterPipe, SearchPipe} from "../../pipes";
@@ -43,7 +44,8 @@ export class PlaceMapComponent implements OnInit {
     private auth: Auth,
     private placeService: PlaceService,
     private eventService: EventService,
-    private tagService: TagService
+    private tagService: TagService,
+    private flash: FlashService
   ) {
   }
 
@@ -91,6 +93,17 @@ export class PlaceMapComponent implements OnInit {
 
   eventHasTag(event) {
     return event.relationships.tags.data.length !== 0;
+  }
+
+  deleteEvent(e) {
+    const promise = this.eventService.deleteEvent(e.id);
+
+    promise
+      .then(res => {
+          this.flash.setMessage("Successfully deleted event.");
+          this.eventService.getEvents().then(events => this.events = events);
+        })
+      .catch(err => this.flash.setError(err.message || "Something got messed up!!"));
   }
 
   checkIfCurrentUsers(event) {

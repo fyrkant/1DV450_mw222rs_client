@@ -32,17 +32,19 @@ export class EventService {
 
     console.log(payload);
 
-    this.authHttp.post(this.url, payload, options)
-      .toPromise()
-      .then(newEvent => {
-        console.log(newEvent);
-        this.flash.setMessage("Successfully saved new event!");
-        this.router.navigate(["map"]);
-      })
-      .catch(err => {
-        this.flash.setError(err.message || "Something got messed up!");
-        console.log(err);
-    });
+    return this.authHttp.post(this.url, payload, options)
+      .toPromise();
+  }
+  public deleteEvent(id) {
+    const headers: Headers = new Headers({ "X-Api-key": C.API_KEY});
+    const options: RequestOptions = new RequestOptions({ headers });
+    const url = this.url + "/" + id;
+    console.log(url);
+
+    if (confirm("Do you really want to delete this event?")) {
+      return this.authHttp.delete(url, options)
+        .toPromise();
+    }
   }
 
 }

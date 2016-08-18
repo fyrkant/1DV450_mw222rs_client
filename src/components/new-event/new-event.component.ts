@@ -5,6 +5,7 @@ import {
   EventService,
   PlaceService,
   TagService,
+  FlashService,
   Auth
 } from "../../services";
 
@@ -46,6 +47,7 @@ export class NewEventForm implements OnInit {
     private placeService: PlaceService,
     private tagService: TagService,
     private auth: Auth,
+    private flash: FlashService,
     fb: FormBuilder
     ) {
       this.name = new FormControl("", Validators.required);
@@ -57,7 +59,6 @@ export class NewEventForm implements OnInit {
         name: this.name,
         description: this.description,
         date: this.date,
-        tags: this.tagsForm,
         place_id: this.place_id
       });
 
@@ -74,14 +75,23 @@ export class NewEventForm implements OnInit {
   isCurrentUsersEvent = (eventCreatorId: string) => parseInt(eventCreatorId) === this.userId
 
   saveEvent(event) {
+    // console.log(this.eventForm.value);
     const data = {
-      event: Object.assign({}, this.eventForm.value, {tags: this.selectedTags}),
-      tags: this.selectedTags
+      event: this.eventForm.value,
+      tags: [parseInt(this.tagsForm.value)]
     };
-    // console.log(data);
 
-    this.eventService.saveEvent(data);
-    this.saveClick.emit();
+    const promise = this.eventService.saveEvent(data);
+    promise
+      .then(newEvent => {
+        console.log(newEvent);
+        this.flash.setMessage("Successfully saved new event!");
+        this.saveClick.emit();
+      })
+      .catch(err => {
+          this.flash.setError(err.message || "Something got messed up!");
+          console.log(err);
+      });
   }
   clearForm() {
     this.eventForm.reset();

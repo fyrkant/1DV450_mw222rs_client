@@ -6,14 +6,15 @@
     <label for="date-input">Date:</label>
     <md-input name="date-input" class="event-input" [formControl]="date" type="date" ></md-input>
     <!--<md-input class="event-input" [formControl]="place_id" type="text" placeholder="Place" ></md-input>-->
-    <label for="place-select">Select location:</label>
+    <label for="place-select">Select location:</label> <br />
     <select name="place-select" [formControl]="place_id">
       <option value="" disabled selected>Select</option>
       <option *ngFor="let place of places" [value]="place.id">{{place.attributes.name}}</option>
     </select>
     <br />
-    <label for="tagsSelect">Tag:</label>
-    <select name="tagsSelect" (change)="selectTag($event.target.options)">
+    <label for="tagsSelect">Select tag:</label> <br />
+    <select name="tagsSelect" [formControl]="tagsForm">
+      <option value="" disabled selected>Select</option>
       <option *ngFor="let tag of tags" [value]="tag.id">{{tag.attributes.name}}</option>
     </select>
     <br />
