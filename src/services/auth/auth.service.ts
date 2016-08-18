@@ -25,7 +25,8 @@ export class Auth {
 
   public authenticated() {
     // Check if there"s an unexpired JWT
-    return tokenNotExpired();
+    const token = localStorage.getItem("id_token");
+    return tokenNotExpired("id_token", token);
   }
   public postLogin(loginData: JSON) {
     const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
@@ -41,7 +42,7 @@ export class Auth {
         })
         .catch(err => {
           const error = err.json();
-          this.flash.setError(error.message || 'Oh dear, something went wrong!')
+          this.flash.setError(error.message || "Oh dear, something went wrong!");
         });
   }
 
@@ -58,7 +59,7 @@ export class Auth {
       localStorage.removeItem("id_token");
       this.zoneImpl.run(() => this.user = null);
       this.router.navigate(["dashboard"]);
-      this.flash.setMessage('Successfully logged out!')
+      this.flash.setMessage("Successfully logged out!");
     }
   }
 

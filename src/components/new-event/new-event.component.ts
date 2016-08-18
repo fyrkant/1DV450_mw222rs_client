@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormControl, FormGroup } from "@angular/forms";
 
 import {
   EventService,
   PlaceService,
+  TagService,
   Auth
 } from "../../services";
 
@@ -19,8 +20,11 @@ import {
 })
 
 export class NewEventForm implements OnInit {
+  @Output() saveClick = new EventEmitter();
+
   events: Promise<any>;
-  places;
+  places: Promise<any>;
+  tags: Promise<any>;
   userId: number;
 
   fb: FormBuilder;
@@ -28,7 +32,10 @@ export class NewEventForm implements OnInit {
   name: FormControl;
   description: FormControl;
   date: FormControl;
+  tagsForm: FormControl;
   place_id: FormControl;
+
+  selectedTags;
 
   stringDater(dateString) {
     return new Date(dateString);
@@ -37,17 +44,20 @@ export class NewEventForm implements OnInit {
   constructor(
     private eventService: EventService,
     private placeService: PlaceService,
+    private tagService: TagService,
     private auth: Auth,
     fb: FormBuilder
     ) {
       this.name = new FormControl("", Validators.required);
       this.description = new FormControl("", Validators.required);
       this.date = new FormControl("", Validators.required);
+      this.tagsForm = new FormControl("");
       this.place_id = new FormControl("", Validators.required);
       this.eventForm = fb.group({
         name: this.name,
         description: this.description,
         date: this.date,
+        tags: this.tagsForm,
         place_id: this.place_id
       });
 
@@ -56,24 +66,30 @@ export class NewEventForm implements OnInit {
   ngOnInit() {
     this.eventService.getEvents().then(events => this.events = events);
     this.placeService.getPlaces().then(places => this.places = places);
+    this.tagService.getTags().then(tags => this.tags = tags);
 
     this.userId = this.auth.getCurrentId();
   }
 
-  isCurrentUsersEvent(eventCreatorId: string) {
-    const isCurrentUsersEvent = parseInt(eventCreatorId) === this.userId;
-
-    return isCurrentUsersEvent;
-  }
+  isCurrentUsersEvent = (eventCreatorId: string) => parseInt(eventCreatorId) === this.userId
 
   saveEvent(event) {
-    const data = {event: this.eventForm.value };
+    const data = {
+      event: Object.assign({}, this.eventForm.value, {tags: this.selectedTags}),
+      tags: this.selectedTags
+    };
     // console.log(data);
 
     this.eventService.saveEvent(data);
+    this.saveClick.emit();
   }
   clearForm() {
     this.eventForm.reset();
+  }
+  selectTag(options) {
+    const arr = [].slice.call(options);
+    const selectedTags = arr.reduce((acc, el) => el.selected ? acc.concat(parseInt(el.value)) : acc, []);
+    this.selectedTags = selectedTags;
   }
 
 }

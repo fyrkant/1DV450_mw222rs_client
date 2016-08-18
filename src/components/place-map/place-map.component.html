@@ -2,7 +2,7 @@
 <md-card class="map-card">
   <button md-raised-button *ngIf="!formShowing" (click)="toggleForm()">Add new event</button>
   <button md-raised-button *ngIf="formShowing" (click)="toggleForm()">Hide form</button>
-  <new-event-form *ngIf="formShowing"></new-event-form>
+  <new-event-form *ngIf="formShowing" (saveClick)="savedNewEvent()"></new-event-form>
   <span *ngIf="!formShowing">
     <search-box (change)="searchTerm = $event"></search-box>
     <tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></tag-filter-picker>
@@ -34,13 +34,15 @@
         <p *ngIf="checkIfCurrentUsers(e)">This is mine.</p>
         <h4>{{ e.attributes.name }}</h4>
         <p>{{ e.attributes.description }}</p>
-        <p><strong>Tags:</strong></p>
-        <ul>
-          <li
-            *ngFor="let t of getEventTags(e)">
-            {{t.attributes.name}}
-          </li>
-        </ul>
+        <span *ngIf="eventHasTag(e)">
+          <p><strong>Tag:</strong></p>
+          <ul>
+            <li
+              *ngFor="let t of getEventTags(e)">
+              {{t.attributes.name}}
+            </li>
+          </ul>
+        </span>
       </span>
     </sebm-google-map-info-window>
 

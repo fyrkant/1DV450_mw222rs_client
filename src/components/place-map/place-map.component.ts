@@ -71,13 +71,8 @@ export class PlaceMapComponent implements OnInit {
     return lng;
   }
 
-  getPlaceLat(place) {
-    return parseFloat(place.attributes.lat);
-  }
-
-  getPlaceLng(place) {
-    return parseFloat(place.attributes.lng);
-  }
+  getPlaceLat = place => parseFloat(place.attributes.lat)
+  getPlaceLng = place => parseFloat(place.attributes.lng)
 
   getEventTags(event) {
     const tagIds = event.relationships.tags.data.map(obj => obj.id);
@@ -86,16 +81,16 @@ export class PlaceMapComponent implements OnInit {
     return tags;
   }
 
-  getEventsOnPlace(place) {
-    const eventsOnPlace = this.events && this.events.filter(event => event.relationships.place.data.id === place.id);
-
-    return eventsOnPlace;
-  }
+  getEventsOnPlace = place => this.events && this.events.filter(event => event.relationships.place.data.id === place.id)
 
   centerMapOnEvent(event) {
     this.lat = this.getEventLat(event);
     this.lng = this.getEventLng(event);
     this.zoom = 7;
+  }
+
+  eventHasTag(event) {
+    return event.relationships.tags.data.length !== 0;
   }
 
   checkIfCurrentUsers(event) {
@@ -113,5 +108,9 @@ export class PlaceMapComponent implements OnInit {
 
   toggleForm() {
     this.formShowing = !this.formShowing;
+  }
+  savedNewEvent() {
+    this.formShowing = false;
+    this.eventService.getEvents().then(e => this.events = e);
   }
 }

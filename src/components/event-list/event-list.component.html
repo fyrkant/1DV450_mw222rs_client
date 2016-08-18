@@ -1,4 +1,4 @@
-<md-nav-list dense>
+<md-nav-list dense class="my-fine-list">
   <md-list-item *ngFor="let e of events | searchPipe : searchTerm | tagFilter : selectedTag" (click)="onSelected.emit(e)" >
     <p md-line>{{e.attributes.name}}</p>
   </md-list-item>
