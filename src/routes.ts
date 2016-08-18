@@ -2,15 +2,19 @@ import { provideRouter, RouterConfig } from "@angular/router";
 import {
   DashboardComponent,
   LoginComponent,
-  PlaceMapComponent
+  PlaceMapComponent,
+  TagPageComponent,
+  PlacePageComponent
 } from "./components";
-import { RouteGuard } from "./services"
+import { RouteGuard } from "./services";
 
 export const appRoutes: RouterConfig = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'map', component: PlaceMapComponent, canActivate: [RouteGuard] }
+  { path: "", redirectTo: "dashboard", pathMatch: "full" },
+  { path: "dashboard", component: DashboardComponent },
+  { path: "tags", component: TagPageComponent, canActivate: [RouteGuard] },
+  { path: "places", component: PlacePageComponent, canActivate: [RouteGuard] },
+  { path: "login", component: LoginComponent },
+  { path: "map", component: PlaceMapComponent, canActivate: [RouteGuard] }
 ];
 
 export const APP_ROUTER_PROVIDER = provideRouter(appRoutes);

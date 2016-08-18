@@ -31,6 +31,7 @@
     [markerDraggable]="false">
     <sebm-google-map-info-window [disableAutoPan]="false">
       <h3>{{ place.attributes.name}} has these events:</h3>
+      <p *ngIf="place.relationships.events.data.length === 0"><strong>No events saved for this place yet.</strong></p>
       <span *ngFor="let e of getEventsOnPlace(place)">
         <h4>Name: {{ e.attributes.name }}</h4>
         <p>Description: {{ e.attributes.description }}</p>

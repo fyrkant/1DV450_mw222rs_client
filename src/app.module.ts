@@ -33,7 +33,9 @@ import {
   TagFilterPicker,
   FlashMessageComponent,
   EventListComponent,
-  SearchBoxComponent
+  SearchBoxComponent,
+  PlacePageComponent,
+  TagPageComponent
 } from "./components";
 
 if (process.env.ENV === "production") enableProdMode();
@@ -47,7 +49,9 @@ if (process.env.ENV === "production") enableProdMode();
       LoginComponent,
       FlashMessageComponent,
       EventListComponent,
-      SearchBoxComponent
+      SearchBoxComponent,
+      TagPageComponent,
+      PlacePageComponent
     ],
     providers: [
       FlashService,

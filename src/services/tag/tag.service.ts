@@ -23,4 +23,13 @@ export class TagService {
       .catch(e => console.log(e));
   }
 
+  public saveNew(tag) {
+    const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json"});
+    const options: RequestOptions = new RequestOptions({ headers });
+    const payload = JSON.stringify({ tag: {name: tag} });
+
+    return this.authHttp.post(this.url, payload, options)
+      .toPromise();
+  }
+
 }
