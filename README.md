@@ -11,3 +11,7 @@ To fiddle with code:
 - Clone repo
 - run `npm install`
 - start dev-server with `npm start`
+
+things changed on API:
+- fixed broken functionality to add tag to event when saving new tag
+- allowing cors on API
