@@ -9,6 +9,7 @@ import { TagFilterPipe, SearchPipe } from "../../pipes/";
 export class EventListComponent {
   @Input() events;
   @Input() selectedTag;
+  @Input() searchTerm;
   @Output() onSelected = new EventEmitter();
 
   constructor() {}

@@ -4,8 +4,14 @@
   <button *ngIf="formShowing" (click)="toggleForm()">Hide form</button>
   <new-event-form *ngIf="formShowing"></new-event-form>
   <span *ngIf="!formShowing">
+    <search-box (change)="searchTerm = $event"></search-box>
     <tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></tag-filter-picker>
-    <event-list [events]="events" [selectedTag]="selectedTag" (onSelected)="centerMapOnEvent($event)" ></event-list>
+    <event-list 
+      [events]="events" 
+      [selectedTag]="selectedTag" 
+      [searchTerm]="searchTerm" 
+      (onSelected)="centerMapOnEvent($event)" 
+    ></event-list>
   </span>
 </md-card>
 <sebm-google-map
@@ -17,7 +23,7 @@
 
 
   <sebm-google-map-marker
-    *ngFor="let e of events | tagFilter : selectedTag; let i = index"
+    *ngFor="let e of events | searchPipe: searchTerm | tagFilter : selectedTag; let i = index"
     (markerClick)="clickedMarker(e.name, i)"
     [latitude]="getEventLat(e)"
     [longitude]="getEventLng(e)"
