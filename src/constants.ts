@@ -20,7 +20,7 @@ const C = {
 
   // BASE_API_URL: "http://localhost:3000/api"
 
-  BASE_API_URL: "http://lit-river-92285.herokuapp.com/api"
+  BASE_API_URL: "https://lit-river-92285.herokuapp.com/api"
 
 };
 

@@ -6,7 +6,7 @@ import {
   PlaceService,
   TagService,
   FlashService,
-  Auth
+  Auth,
 } from "../../services";
 
 @Component({

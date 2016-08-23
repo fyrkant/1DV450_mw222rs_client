@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
   styles: [`.dash-div {
     margin: 10px;
   }`],
-  template: require("./dashboard.component.html")
+  template: require("./dashboard.component.html"),
 })
 
 export class DashboardComponent {

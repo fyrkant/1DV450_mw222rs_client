@@ -23,12 +23,12 @@ export class Auth {
     this.user = JSON.parse(localStorage.getItem("profile"));
   }
 
-  public authenticated() {
+  public authenticated(): Boolean {
     // Check if there"s an unexpired JWT
     const token = localStorage.getItem("id_token");
     return tokenNotExpired("id_token", token);
   }
-  public postLogin(loginData: JSON) {
+  public postLogin(loginData: JSON): void {
     const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
     const options: RequestOptions = new RequestOptions({ headers });
     const body = JSON.stringify(loginData);
@@ -53,7 +53,7 @@ export class Auth {
     localStorage.setItem("id_token", token);
   }
 
-  public logout() {
+  public logout(): void {
     if (confirm("Are you sure that you want to log out?")) {
       localStorage.removeItem("profile");
       localStorage.removeItem("id_token");
@@ -63,7 +63,7 @@ export class Auth {
     }
   }
 
-  public getCurrentId() {
+  public getCurrentId(): number {
     const data = localStorage.getItem("profile");
 
     if (!data) {
