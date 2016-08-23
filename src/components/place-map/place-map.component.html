@@ -2,16 +2,16 @@
 <md-card class="map-card">
   <button md-raised-button *ngIf="!formShowing" (click)="toggleForm()">Add new event</button>
   <button md-raised-button *ngIf="formShowing" (click)="toggleForm()">Hide form</button>
-  <new-event-form *ngIf="formShowing" (saveClick)="savedNewEvent()"></new-event-form>
+  <pa-new-event-form *ngIf="formShowing" (saveClick)="savedNewEvent()"></pa-new-event-form>
   <span *ngIf="!formShowing">
-    <search-box (change)="searchTerm = $event"></search-box>
-    <tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></tag-filter-picker>
-    <event-list
+    <pa-search-box (change)="searchTerm = $event"></pa-search-box>
+    <pa-tag-filter-picker (setTag)="selectedTag = $event" [selected]="selectedTag"></pa-tag-filter-picker>
+    <pa-event-list
       [events]="events"
       [selectedTag]="selectedTag"
       [searchTerm]="searchTerm"
       (onSelected)="centerMapOnEvent($event)"
-    ></event-list>
+    ></pa-event-list>
   </span>
 </md-card>
 <sebm-google-map

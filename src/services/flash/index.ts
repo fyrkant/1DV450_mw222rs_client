@@ -1,1 +1,1 @@
-export * from './flash.service';
+export * from "./flash.service";

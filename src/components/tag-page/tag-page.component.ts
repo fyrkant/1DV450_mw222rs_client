@@ -2,11 +2,16 @@ import { Component, OnInit } from "@angular/core";
 
 import {
   TagService,
-  FlashService
+  FlashService,
 } from "./../../services";
 
 @Component({
-  selector: "tag-page",
+  selector: "pa-tag-page",
+  styles: [`
+    .tag-page {
+      margin: 10px;
+    }
+  `],
   template: `
   <div class="tag-page">
     <h2>Tags</h2>
@@ -20,22 +25,16 @@ import {
     </md-list>
   </div>
   `,
-  styles: [`
-    .tag-page {
-      margin: 10px;
-    }
-  `]
 })
 export class TagPageComponent implements OnInit {
-  tags;
+  private tags;
 
   constructor(
     private flash: FlashService,
     private tagService: TagService
   ) { }
 
-  saveNew(input) {
-    console.log(input.value);
+  public saveNew(input) {
     const promise = this.tagService.saveNew(input.value);
 
     promise
@@ -47,11 +46,11 @@ export class TagPageComponent implements OnInit {
       .catch(err => this.flash.setError(err.message || "Something bad went down..."));
   }
 
-  clear(input) {
+  public clear(input) {
     input.value = "";
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.tagService.getTags().then(tags => this.tags = tags);
   }
 }

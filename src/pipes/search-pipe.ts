@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: "searchPipe",
+  name: "paSearchPipe",
 })
 export class SearchPipe implements PipeTransform {
   public transform(events: any, term): any {

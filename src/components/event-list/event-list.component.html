@@ -1,5 +1,5 @@
 <md-nav-list dense class="my-fine-list">
-  <md-list-item *ngFor="let e of events | searchPipe : searchTerm | tagFilter : selectedTag" (click)="onSelected.emit(e)" >
+  <md-list-item *ngFor="let e of events | paSearchPipe : searchTerm | paTagFilter : selectedTag" (click)="onSelected.emit(e)" >
     <p md-line>{{e.attributes.name}}</p>
   </md-list-item>
 </md-nav-list>

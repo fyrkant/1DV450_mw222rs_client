@@ -1,5 +1,8 @@
 {
     "extends": "tslint:recommended",
+    "rulesDirectory": [
+        "node_modules/codelyzer"
+    ],
     "rules": {
         "class-name": true,
         "comment-format": [
@@ -53,6 +56,25 @@
             "check-operator",
             "check-separator",
             "check-type"
-        ]
+        ],
+        "directive-selector-name": [true, "camelCase"],
+        "component-selector-name": [true, "kebab-case"],
+        "directive-selector-type": [true, "attribute"],
+        "component-selector-type": [true, "element"],
+        "directive-selector-prefix": [true, "pa"],
+        "component-selector-prefix": [true, "pa"],
+        "use-input-property-decorator": true,
+        "use-output-property-decorator": true,
+        "use-host-property-decorator": true,
+        "no-attribute-parameter-decorator": true,
+        "no-input-rename": true,
+        "no-output-rename": true,
+        "no-forward-ref" :true,
+        "use-life-cycle-interface": true,
+        "use-pipe-transform-interface": true,
+        "pipe-naming": [true, "camelCase", "pa"],
+        "component-class-suffix": true,
+        "directive-class-suffix": true,
+        "import-destructuring-spacing": true
     }
 }

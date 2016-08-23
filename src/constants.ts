@@ -1,18 +1,4 @@
 const C = {
-  INCREMENT: "INCREMENT",
-  DECREMENT: "DECREMENT",
-  RESET: "RESET",
-
-  // Auth statuses
-  ANONYMOUS: "ANONYMOUS",
-  AWAITING: "AWAITING",
-  AUTHENTICATED: "AUTHENTICATED",
-
-  // Auth actions
-  ATTEMPT_AUTHENTICATE: "ATTEMPT_AUTHENTICATE",
-  AUTHENTICATE: "AUTHENTICATE",
-  DEAUTHENTICATE: "DEAUTHENTICATE",
-
   // API KEY
   // API_KEY: "d32daaaf34ec4a919941735879dc57b9",
 
@@ -20,7 +6,7 @@ const C = {
 
   // BASE_API_URL: "http://localhost:3000/api"
 
-  BASE_API_URL: "https://lit-river-92285.herokuapp.com/api"
+  BASE_API_URL: "https://lit-river-92285.herokuapp.com/api",
 
 };
 

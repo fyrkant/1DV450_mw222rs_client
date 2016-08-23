@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AuthHttp } from "angular2-jwt";
-import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { Http, Headers, RequestOptions } from "@angular/http";
 import C from "../../constants";
 
 import "rxjs/operator/toPromise";
@@ -8,7 +8,7 @@ import "rxjs/operator/do";
 
 @Injectable()
 export class TagService {
-  url: string = `${C.BASE_API_URL}/tags`;
+  private url: string = `${C.BASE_API_URL}/tags`;
 
   constructor(private authHttp: AuthHttp, private http: Http) {
   }

@@ -10,37 +10,32 @@ import {
 } from "../../services";
 
 @Component({
-  selector: "new-event-form",
-  viewProviders: [FormBuilder],
-  template: require("./new-event.component.html"),
+  directives: [REACTIVE_FORM_DIRECTIVES],
+  selector: "pa-new-event-form",
   styles: [`.event-input {
     display: block;
     width: 250px;
   }`],
-  directives: [REACTIVE_FORM_DIRECTIVES]
+  template: require("./new-event.component.html"),
+  viewProviders: [FormBuilder],
 })
 
-export class NewEventForm implements OnInit {
-  @Output() saveClick = new EventEmitter();
+export class NewEventFormComponent implements OnInit {
+  @Output() public saveClick = new EventEmitter();
 
-  events: Promise<any>;
-  places: Promise<any>;
-  tags: Promise<any>;
-  userId: number;
+  private events: Promise<any>;
+  private places: Promise<any>;
+  private tags: Promise<any>;
+  private userId: number;
 
-  fb: FormBuilder;
-  eventForm: FormGroup;
-  name: FormControl;
-  description: FormControl;
-  date: FormControl;
-  tagsForm: FormControl;
-  place_id: FormControl;
+  private eventForm: FormGroup;
+  private name: FormControl;
+  private description: FormControl;
+  private date: FormControl;
+  private tagsForm: FormControl;
+  private place_id: FormControl;
 
-  selectedTags;
-
-  stringDater(dateString) {
-    return new Date(dateString);
-  }
+  private selectedTags;
 
   constructor(
     private eventService: EventService,
@@ -56,15 +51,15 @@ export class NewEventForm implements OnInit {
       this.tagsForm = new FormControl("");
       this.place_id = new FormControl("", Validators.required);
       this.eventForm = fb.group({
-        name: this.name,
-        description: this.description,
         date: this.date,
-        place_id: this.place_id
+        description: this.description,
+        name: this.name,
+        place_id: this.place_id,
       });
 
     }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.eventService.getEvents().then(events => this.events = events);
     this.placeService.getPlaces().then(places => this.places = places);
     this.tagService.getTags().then(tags => this.tags = tags);
@@ -72,33 +67,37 @@ export class NewEventForm implements OnInit {
     this.userId = this.auth.getCurrentId();
   }
 
-  isCurrentUsersEvent = (eventCreatorId: string) => parseInt(eventCreatorId) === this.userId
+  public stringDater(dateString) {
+    return new Date(dateString);
+  }
 
-  saveEvent(event) {
+  public isCurrentUsersEvent = (eventCreatorId: string) => parseInt(eventCreatorId, 10) === this.userId
+
+  public saveEvent(event) {
     // console.log(this.eventForm.value);
     const data = {
       event: this.eventForm.value,
-      tags: [parseInt(this.tagsForm.value)]
+      tags: [ parseInt(this.tagsForm.value, 10) ],
     };
 
     const promise = this.eventService.saveEvent(data);
     promise
       .then(newEvent => {
-        console.log(newEvent);
+        // console.log(newEvent);
         this.flash.setMessage("Successfully saved new event!");
         this.saveClick.emit();
       })
       .catch(err => {
           this.flash.setError(err.message || "Something got messed up!");
-          console.log(err);
+          // console.log(err);
       });
   }
-  clearForm() {
+  public clearForm() {
     this.eventForm.reset();
   }
-  selectTag(options) {
+  public selectTag(options) {
     const arr = [].slice.call(options);
-    const selectedTags = arr.reduce((acc, el) => el.selected ? acc.concat(parseInt(el.value)) : acc, []);
+    const selectedTags = arr.reduce((acc, el) => el.selected ? acc.concat(parseInt(el.value, 10)) : acc, []);
     this.selectedTags = selectedTags;
   }
 

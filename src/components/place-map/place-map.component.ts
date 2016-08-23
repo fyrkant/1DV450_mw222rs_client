@@ -1,44 +1,35 @@
 import { Component, OnInit } from "@angular/core";
 
-import {TagFilterPicker} from "../../components/tag-filter-picker/tag-filter-picker.component.ts";
-import {NewEventForm} from "../../components/new-event/new-event.component.ts";
-
 import {
   Auth,
   EventService,
   PlaceService,
   TagService,
-  FlashService
+  FlashService,
 } from "../../services";
 
-import {TagFilterPipe, SearchPipe} from "../../pipes";
-
-import {Place} from "../../models";
+import { TagFilterPipe, SearchPipe } from "../../pipes";
 
 @Component({
-  selector: "place-map",
   pipes: [TagFilterPipe, SearchPipe],
-  directives: [
-  TagFilterPicker,
-  NewEventForm
-  ],
+  selector: "pa-place-map",
+  styles: [require("./place-map.component.css")],
   template: require("./place-map.component.html"),
-  styles: [require("./place-map.component.css")]
 })
 
 export class PlaceMapComponent implements OnInit {
-  places: Array<any>;
-  events: Array<any>;
-  tags: Array<any>;
+  private places: Array<any>;
+  private events: Array<any>;
+  private tags: Array<any>;
 
   // google maps zoom level
-  zoom: number = 4;
+  private zoom: number = 4;
 
   // initial center position for the map
-  lat: number = 60.673858;
-  lng: number = 12.815982;
+  private lat: number = 60.673858;
+  private lng: number = 12.815982;
 
-  formShowing = false;
+  private formShowing = false;
 
   constructor(
     private auth: Auth,
@@ -49,53 +40,54 @@ export class PlaceMapComponent implements OnInit {
   ) {
   }
 
-  clickedMarker(label: string, index: number) {
+  public clickedMarker(label: string, index: number) {
     // window.alert(`clicked the marker: ${label || index}`);
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.placeService.getPlaces().then(places => this.places = places);
     this.eventService.getEvents().then(e => this.events = e);
     this.tagService.getTags().then(tags => this.tags = tags);
   }
 
-  getEventLat(event) {
+  public getEventLat(event) {
     const place = this.places && this.places.filter(p => p.id === event.relationships.place.data.id)[0];
     const lat = parseFloat(place.attributes.lat);
 
     return lat;
   }
 
-  getEventLng(event) {
+  public getEventLng(event) {
     const place = this.places && this.places.filter(p => p.id === event.relationships.place.data.id)[0];
     const lng = parseFloat(place.attributes.lng);
 
     return lng;
   }
 
-  getPlaceLat = place => parseFloat(place.attributes.lat)
-  getPlaceLng = place => parseFloat(place.attributes.lng)
+  public getPlaceLat = place => parseFloat(place.attributes.lat)
+  public getPlaceLng = place => parseFloat(place.attributes.lng)
 
-  getEventTags(event) {
+  public getEventTags(event) {
     const tagIds = event.relationships.tags.data.map(obj => obj.id);
     const tags = this.tags && this.tags.filter(t => tagIds.indexOf(t.id) !== -1);
 
     return tags;
   }
 
-  getEventsOnPlace = place => this.events && this.events.filter(event => event.relationships.place.data.id === place.id)
+  public getEventsOnPlace = place =>
+    this.events && this.events.filter(event => event.relationships.place.data.id === place.id)
 
-  centerMapOnEvent(event) {
+  public centerMapOnEvent(event) {
     this.lat = this.getEventLat(event);
     this.lng = this.getEventLng(event);
     this.zoom = 7;
   }
 
-  eventHasTag(event) {
+  public eventHasTag(event) {
     return event.relationships.tags.data.length !== 0;
   }
 
-  deleteEvent(e) {
+  public deleteEvent(e) {
     const promise = this.eventService.deleteEvent(e.id);
 
     promise
@@ -106,23 +98,23 @@ export class PlaceMapComponent implements OnInit {
       .catch(err => this.flash.setError(err.message || "Something got messed up!!"));
   }
 
-  checkIfCurrentUsers(event) {
+  public checkIfCurrentUsers(event) {
     const currentUserId = this.auth.getCurrentId();
 
     return event.relationships.user.data.id === currentUserId;
   }
 
-  mapClicked($event: MouseEvent) {
+  public mapClicked($event: MouseEvent) {
     // this.markers.push({
     //   lat: $event.coords.lat,
     //   lng: $event.coords.lng
     // });
   }
 
-  toggleForm() {
+  public toggleForm() {
     this.formShowing = !this.formShowing;
   }
-  savedNewEvent() {
+  public savedNewEvent() {
     this.formShowing = false;
     this.eventService.getEvents().then(e => this.events = e);
   }

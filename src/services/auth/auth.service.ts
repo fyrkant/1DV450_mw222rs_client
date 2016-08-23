@@ -7,10 +7,9 @@ import { FlashService } from "../flash/flash.service";
 
 @Injectable()
 export class Auth {
-  refreshSubscription: any;
-  user: Object;
-  zoneImpl: NgZone;
-  url: string = `${C.BASE_API_URL}/auth`;
+  private user: Object;
+  private zoneImpl: NgZone;
+  private url: string = `${C.BASE_API_URL}/auth`;
 
   constructor(
     private http: Http,
@@ -32,7 +31,6 @@ export class Auth {
     const headers: Headers = new Headers({ "X-Api-key": C.API_KEY, "Content-Type": "application/json" });
     const options: RequestOptions = new RequestOptions({ headers });
     const body = JSON.stringify(loginData);
-
 
     this.http.post(this.url, body, options)
         .toPromise()

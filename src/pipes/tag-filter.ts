@@ -1,7 +1,7 @@
-import {Pipe, PipeTransform} from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: "tagFilter",
+  name: "paTagFilter",
 })
 export class TagFilterPipe implements PipeTransform {
   public transform(events, tag): Array<any> {

@@ -2,11 +2,16 @@ import { Component, OnInit } from "@angular/core";
 
 import {
   PlaceService,
-  FlashService
+  FlashService,
 } from "./../../services";
 
 @Component({
-  selector: "place-page",
+  selector: "pa-place-page",
+  styles: [`
+    .place-page {
+      margin: 10px;
+    }
+  `],
   template: `
   <div class="place-page">
     <h2>Places</h2>
@@ -20,22 +25,17 @@ import {
     </md-list>
   </div>
   `,
-  styles: [`
-    .place-page {
-      margin: 10px;
-    }
-  `]
 })
 export class PlacePageComponent implements OnInit {
-  places;
+  private places;
 
   constructor(
     private flash: FlashService,
     private placeService: PlaceService
   ) { }
 
-  saveNew(input) {
-    console.log(input.value);
+  public saveNew(input) {
+    // console.log(input.value);
     const promise = this.placeService.saveNew(input.value);
 
     promise
@@ -47,11 +47,11 @@ export class PlacePageComponent implements OnInit {
       .catch(err => this.flash.setError(err.message || "Something bad went down..."));
   }
 
-  clear(input) {
+  public clear(input) {
     input.value = "";
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.placeService.getPlaces().then(places => this.places = places);
   }
 }

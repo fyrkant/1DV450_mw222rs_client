@@ -2,11 +2,8 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class FlashService {
-  message: String = "";
-  isError: Boolean = false;
-
-  constructor() {
-  }
+  private message: String = "";
+  private isError: Boolean = false;
 
   public isErrorMessage() {
     return this.isError;

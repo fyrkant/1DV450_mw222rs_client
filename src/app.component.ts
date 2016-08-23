@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 
-import {Auth} from "./services";
+import { Auth } from "./services";
 
 import "../sass/base.scss";
 
 @Component({
-    selector: "app",
+    selector: "pa-app",
     styles: [`.demo-fill-remaining {
                 flex: 1 1 auto;
               }`],
